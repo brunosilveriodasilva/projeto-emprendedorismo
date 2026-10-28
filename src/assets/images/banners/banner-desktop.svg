@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 800" role="img" aria-labelledby="title desc">
+  <title id="title">Arte provisória para o banner Bem Adocicado</title>
+  <desc id="desc">Formas abstratas em vermelho e tons de creme com uma ilustração de brownie. Substituir pela arte final da equipe.</desc>
+  <rect width="1400" height="800" rx="32" fill="#f3e9e5"/>
+  <circle cx="1050" cy="380" r="330" fill="#fffdfb"/>
+  <path d="M0 617c232-92 333 37 528-11 152-38 246-178 402-160v354H0z" fill="#ead8d0"/>
+  <path d="M942 178c39-57 116-83 177-57 44-88 180-89 220-2 47 104 9 221-49 274-50 47-196 44-286 9-89-35-119-146-62-224z" fill="#c8102e" opacity=".96"/>
+  <ellipse cx="1048" cy="604" rx="247" ry="44" fill="#d5bdb2"/>
+  <path d="M874 360h354l-45 224c-5 25-27 43-52 43H975c-25 0-47-18-52-43z" fill="#6b3629"/>
+  <path d="M874 360h354l-13 66H887z" fill="#95563d"/>
+  <path d="M912 347c11-48 47-75 92-62 25-46 83-45 103-10 43-33 92-6 95 37 41-13 73 16 73 48H874c0-10 14-18 38-13z" fill="#fffdfb" stroke="#191919" stroke-width="8" stroke-linejoin="round"/>
+  <circle cx="943" cy="485" r="9" fill="#d99c70"/><circle cx="1040" cy="519" r="9" fill="#d99c70"/><circle cx="1140" cy="480" r="9" fill="#d99c70"/>
+  <path d="m741 253 17 20-17 20-17-20zM1281 270l14 17-14 17-14-17zM813 622l14 16-14 16-14-16z" fill="#c8102e"/>
+</svg>

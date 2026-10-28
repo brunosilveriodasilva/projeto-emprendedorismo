@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#fffdfb" />
+    <meta name="description" content="Conheça o catálogo da Bem Adocicado e prepare seu pedido pelo WhatsApp." />
+    <title>Bem Adocicado — catálogo de doces</title>
+    <link rel="icon" type="image/svg+xml" href="assets/images/brand/favicon.svg" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <script src="assets/js/catalog.js" defer></script>
+    <script src="assets/js/order-utils.js" defer></script>
+    <script src="assets/js/app.js" defer></script>
+  </head>
+  <body>
+    <div class="site-shell" id="site-shell">
+      <a class="skip-link" href="#main-content">Pular para o conteúdo principal</a>
+      <div class="demo-notice" role="note">
+        <span class="demo-notice__dot" aria-hidden="true"></span>
+        Catálogo de demonstração · produtos, imagens e preços ainda são provisórios
+      </div>
+
+      <header class="site-header">
+        <a class="brand" href="#inicio" aria-label="Bem Adocicado — início">
+          <img src="assets/images/brand/logo-bem-adocicado.jpg" alt="Bem Adocicado" width="80" height="80" />
+        </a>
+
+        <button class="menu-toggle icon-button" id="menu-toggle" type="button" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="site-nav">
+          <svg class="menu-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+          <svg class="close-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg>
+        </button>
+
+        <nav class="primary-nav" id="site-nav" aria-label="Navegação principal" aria-hidden="false">
+          <a href="#brownies">Brownies</a>
+          <a href="#docinhos">Docinhos</a>
+          <a href="#bombons">Bombons</a>
+          <a href="#combos">Combos</a>
+        </nav>
+
+        <button class="cart-trigger" id="cart-open" type="button" aria-label="Abrir carrinho, 0 itens">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.2 10.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 1.9-1.4L21 8H6" /><circle cx="10" cy="20" r="1" /><circle cx="18" cy="20" r="1" /></svg>
+          <span class="cart-trigger__label">Carrinho</span>
+          <span class="cart-count" id="cart-count" aria-hidden="true">0</span>
+        </button>
+      </header>
+
+      <main id="main-content">
+        <section class="hero page-width" id="inicio" aria-labelledby="hero-title">
+          <div class="hero__copy">
+            <p class="eyebrow"><span class="eyebrow__line" aria-hidden="true"></span> BEM ADOCICADO</p>
+            <h1 id="hero-title">Catálogo<br /><em>de doces.</em></h1>
+            <p class="hero__description">Brownies, docinhos, bombons e combos. Explore as opções e monte seu pedido.</p>
+            <a class="button button--dark hero__cta" href="#brownies">Ver catálogo <span aria-hidden="true">↓</span></a>
+            <p class="hero__note">Os itens e valores desta página são exemplos de demonstração.</p>
+          </div>
+          <div class="hero__art-wrap">
+            <picture class="hero__picture">
+              <source media="(max-width: 640px)" srcset="assets/images/banners/banner-mobile.svg" />
+              <img src="assets/images/banners/banner-desktop.svg" alt="Ilustração provisória de doces, a substituir pela arte final da equipe." width="1400" height="800" fetchpriority="high" />
+            </picture>
+            <span class="art-label">Arte provisória · substituir pela imagem final</span>
+          </div>
+          <a class="hero__scroll" href="#brownies" aria-label="Rolar para o catálogo"><span aria-hidden="true">↓</span></a>
+        </section>
+
+        <section class="catalog page-width" aria-label="Catálogo de produtos">
+          <div class="catalog-intro">
+            <p class="eyebrow"><span class="eyebrow__line" aria-hidden="true"></span> ESCOLHA O SEU</p>
+            <h2>Explore<br />o catálogo.</h2>
+            <p>Confira as categorias e adicione seus favoritos ao carrinho.</p>
+          </div>
+
+          <section class="category-section" id="brownies" aria-labelledby="brownies-title">
+            <div class="section-heading">
+              <div><p class="section-kicker">01 / CLÁSSICOS</p><h2 id="brownies-title">Brownies</h2></div>
+              <p>Quadradinhos de chocolate<br class="desktop-break" /> para uma pausa gostosa.</p>
+            </div>
+            <div class="product-grid" data-products="brownies" aria-live="polite"></div>
+          </section>
+
+          <section class="category-section" id="docinhos" aria-labelledby="docinhos-title">
+            <div class="section-heading">
+              <div><p class="section-kicker">02 / PEQUENOS PRAZERES</p><h2 id="docinhos-title">Docinhos</h2></div>
+              <p>Delicados no tamanho,<br class="desktop-break" /> cheios de sabor.</p>
+            </div>
+            <div class="product-grid" data-products="docinhos" aria-live="polite"></div>
+          </section>
+
+          <section class="category-section" id="bombons" aria-labelledby="bombons-title">
+            <div class="section-heading">
+              <div><p class="section-kicker">03 / UM MIMO</p><h2 id="bombons-title">Bombons</h2></div>
+              <p>Uma escolha especial<br class="desktop-break" /> para qualquer momento.</p>
+            </div>
+            <div class="product-grid" data-products="bombons" aria-live="polite"></div>
+          </section>
+
+          <section class="category-section category-section--combos" id="combos" aria-labelledby="combos-title">
+            <div class="section-heading">
+              <div><p class="section-kicker">04 / PARA COMPARTILHAR</p><h2 id="combos-title">Combos promocionais</h2></div>
+              <p>Uma combinação de favoritos<br class="desktop-break" /> em uma só escolha.</p>
+            </div>
+            <div class="product-grid" data-products="combos"></div>
+          </section>
+        </section>
+
+        <section class="order-note page-width" aria-labelledby="order-note-title">
+          <div class="order-note__mark" aria-hidden="true">✳</div>
+          <div><p class="eyebrow">QUANDO ESTIVER PRONTO</p><h2 id="order-note-title">Seu pedido começa por aqui.</h2><p>Confira os itens, informe seus dados e revise a mensagem no WhatsApp antes de enviá-la.</p></div>
+          <button class="text-link" id="order-note-cart" type="button">Abrir carrinho <span aria-hidden="true">↗</span></button>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="site-footer__top page-width">
+          <a class="footer-brand" href="#inicio" aria-label="Bem Adocicado — voltar ao início"><img src="assets/images/brand/logo-bem-adocicado.jpg" alt="Bem Adocicado" width="76" height="76" /></a>
+          <div class="footer-copy"><p class="footer-title">Bem Adocicado</p><p>Catálogo de doces do projeto escolar.</p><p class="footer-demo">Conteúdo de demonstração: confirme produtos, imagens e valores antes de divulgar.</p></div>
+          <div class="footer-links"><p class="footer-title">Navegue</p><a href="#brownies">Brownies</a><a href="#docinhos">Docinhos</a><a href="#bombons">Bombons</a><a href="#combos">Combos</a></div>
+          <div class="footer-contact"><p class="footer-title">Contato</p><a id="footer-whatsapp" href="#" target="_blank" rel="noopener noreferrer">Fale pelo WhatsApp <span aria-hidden="true">↗</span></a><p>O pedido só é enviado quando você confirmar pelo WhatsApp.</p></div>
+        </div>
+        <div class="site-footer__bottom page-width"><span>Bem Adocicado</span><a href="#inicio">Voltar ao topo ↑</a></div>
+      </footer>
+    </div>
+
+    <div class="drawer-backdrop" id="drawer-backdrop" hidden></div>
+    <aside class="cart-drawer" id="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" aria-hidden="true" hidden>
+      <div class="drawer-header">
+        <div><p class="section-kicker" id="drawer-kicker">SEU PEDIDO</p><h2 id="drawer-title">Carrinho <span id="drawer-item-count">(0)</span></h2></div>
+        <button class="icon-button drawer-close" id="cart-close" type="button" aria-label="Fechar carrinho"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg></button>
+      </div>
+
+      <div class="drawer-scroll" id="drawer-scroll">
+        <section class="cart-view" id="cart-view" aria-label="Itens do carrinho">
+          <div class="cart-empty" id="cart-empty" hidden>
+            <div class="cart-empty__icon" aria-hidden="true">♡</div><h3>Seu carrinho está vazio</h3><p>Escolha algo gostoso no catálogo para começar.</p><button class="button button--dark" id="empty-return" type="button">Voltar ao catálogo</button>
+          </div>
+          <ul class="cart-list" id="cart-list" aria-label="Produtos adicionados"></ul>
+          <p class="drawer-demo-note">Os produtos e preços exibidos são provisórios e servem apenas para demonstração.</p>
+        </section>
+
+        <section class="checkout-view" id="checkout-view" aria-labelledby="checkout-title" hidden>
+          <button class="checkout-back-link" id="checkout-back-link" type="button"><span aria-hidden="true">←</span> Voltar aos itens</button>
+          <h3 id="checkout-title">Seus dados</h3>
+          <p class="checkout-intro">Preencha para preparar a mensagem do pedido. O pagamento será combinado pelo WhatsApp.</p>
+          <div class="form-message" id="form-message" role="alert" aria-live="assertive" tabindex="-1" hidden></div>
+          <form id="checkout-form" novalidate>
+            <div class="field-group">
+              <label for="customer-name">Nome <span aria-hidden="true">*</span></label>
+              <input id="customer-name" name="name" type="text" autocomplete="name" maxlength="80" required aria-describedby="name-error" />
+              <span class="field-error" id="name-error"></span>
+            </div>
+            <div class="field-group">
+              <label for="customer-class">Turma <span aria-hidden="true">*</span></label>
+              <input id="customer-class" name="class" type="text" maxlength="40" required aria-describedby="class-error" />
+              <span class="field-error" id="class-error"></span>
+            </div>
+            <div class="field-group">
+              <label for="receiving-method">Forma de recebimento <span aria-hidden="true">*</span></label>
+              <select id="receiving-method" name="receiving" required aria-describedby="receiving-error">
+                <option value="">Selecione uma opção</option>
+                <option value="Retirada no ponto de venda da escola">Retirada no ponto de venda da escola</option>
+                <option value="Entrega dentro da escola">Entrega dentro da escola</option>
+              </select>
+              <span class="field-error" id="receiving-error"></span>
+            </div>
+            <div class="field-group">
+              <label for="customer-notes">Observações <span class="optional-label">opcional</span></label>
+              <textarea id="customer-notes" name="notes" rows="3" maxlength="300" placeholder="Alguma informação para a equipe?"></textarea>
+            </div>
+          </form>
+          <p class="checkout-privacy">Seus dados ficam nesta aba durante a navegação para que você possa voltar do WhatsApp e revisar o pedido.</p>
+          <p class="checkout-demo-warning"><strong>Catálogo de demonstração:</strong> produtos e preços ainda precisam ser confirmados pela equipe. A mensagem preparada também indicará isso.</p>
+        </section>
+      </div>
+
+      <div class="drawer-footer" id="drawer-footer">
+        <div class="drawer-total" aria-live="polite" aria-atomic="true"><span>Total do pedido <small>valores provisórios</small></span><strong id="cart-total">R$ 0,00</strong></div>
+        <div class="drawer-actions" id="cart-actions">
+          <button class="button button--outline" id="continue-shopping" type="button">Continuar comprando</button>
+          <button class="button button--red" id="checkout-start" type="button" disabled>Informar dados <span aria-hidden="true">→</span></button>
+        </div>
+        <div class="drawer-actions" id="checkout-actions" hidden>
+          <button class="button button--outline" id="checkout-back" type="button">Voltar ao carrinho</button>
+          <button class="button button--red" id="prepare-order" type="submit" form="checkout-form">Preparar no WhatsApp <span aria-hidden="true">↗</span></button>
+        </div>
+        <p class="drawer-footer-note" id="drawer-footer-note">Nenhum pedido será enviado sem sua confirmação no WhatsApp.</p>
+      </div>
+    </aside>
+    <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 380" role="img" aria-labelledby="title desc">
+  <title id="title">Imagem provisória de doce</title>
+  <desc id="desc">Ilustração abstrata para substituir pela fotografia do produto.</desc>
+  <rect width="520" height="380" rx="24" fill="#f3e9e5"/>
+  <circle cx="392" cy="92" r="62" fill="#fffdfb" opacity=".78"/>
+  <circle cx="108" cy="297" r="52" fill="#e8d7cf" opacity=".72"/>
+  <path d="M145 129c0-20 16-36 36-36h163c20 0 36 16 36 36v112c0 20-16 36-36 36H181c-20 0-36-16-36-36z" fill="#6b3629"/>
+  <path d="M145 151h235v34H145z" fill="#874934"/>
+  <path d="M181 95c3-22 25-30 46-16 20-22 49-14 57 3 23-18 52-6 56 13" fill="none" stroke="#fffdfb" stroke-width="15" stroke-linecap="round"/>
+  <circle cx="208" cy="211" r="7" fill="#d99c70"/><circle cx="277" cy="226" r="7" fill="#d99c70"/><circle cx="329" cy="205" r="7" fill="#d99c70"/>
+  <path d="m93 116 12 11-12 11-12-11zM419 277l10 9-10 9-10-9z" fill="#c8102e"/>
+</svg>
