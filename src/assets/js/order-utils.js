@@ -6,7 +6,10 @@
 })(typeof window !== "undefined" ? window : globalThis, function () {
   "use strict";
 
-  const money = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
+  const money = new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
 
   function formatMoney(cents) {
     return money.format(cents / 100);
@@ -28,13 +31,23 @@
       "*Produtos*",
       ...productLines,
       "",
-      `*Total do pedido:* ${formatMoney(order.totalCents)}`
+      `*Total do pedido:* ${formatMoney(order.totalCents)}`,
     ];
-    if (order.customer.notes) lines.push("", `*Observações:* ${order.customer.notes}`);
-    if (demoMode || order.items.some((item) => item.provisional || !item.priceConfirmed)) {
-      lines.push("", "*ATENÇÃO: catálogo de demonstração; produtos e valores são provisórios e precisam ser confirmados pela equipe.*");
+    if (order.customer.notes)
+      lines.push("", `*Observações:* ${order.customer.notes}`);
+    if (
+      demoMode ||
+      order.items.some((item) => item.provisional || !item.priceConfirmed)
+    ) {
+      lines.push(
+        "",
+        "*ATENÇÃO: catálogo de demonstração; produtos e valores são provisórios e precisam ser confirmados pela equipe.*",
+      );
     }
-    lines.push("", "Por favor, vamos combinar os detalhes do recebimento e do pagamento.");
+    lines.push(
+      "",
+      "Por favor, vamos combinar os detalhes do recebimento e do pagamento.",
+    );
     return lines.join("\n");
   }
 
