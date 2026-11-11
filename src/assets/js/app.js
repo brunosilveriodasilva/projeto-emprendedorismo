@@ -316,7 +316,7 @@
       ui.drawer.hidden = true;
       ui.backdrop.hidden = true;
       state.drawerClosing = false;
-    }, 370);
+    }, 520);
     if (state.returnFocus && typeof state.returnFocus.focus === "function") state.returnFocus.focus();
   }
 
