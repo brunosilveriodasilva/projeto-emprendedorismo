@@ -53,7 +53,9 @@
     basket: [],
     customer: { name: "", className: "", receiving: "", notes: "" },
     checkout: false,
+    drawerClosing: false,
     returnFocus: null,
+    previousBodyPaddingRight: "",
     toastTimer: null,
     drawerTimer: null
   };
@@ -277,9 +279,13 @@
   }
 
   function openDrawer() {
-    if (!ui.drawer.hidden) return;
+    if (!ui.drawer.hidden && !state.drawerClosing) return;
     clearTimeout(state.drawerTimer);
     state.returnFocus = document.activeElement;
+    state.drawerClosing = false;
+    state.previousBodyPaddingRight = document.body.style.paddingRight;
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    if (scrollbarWidth > 0) document.body.style.paddingRight = `${scrollbarWidth}px`;
     ui.backdrop.hidden = false;
     ui.drawer.hidden = false;
     ui.drawer.inert = false;
@@ -287,6 +293,7 @@
     ui.siteShell.inert = true;
     ui.siteShell.setAttribute("aria-hidden", "true");
     document.body.classList.add("drawer-open");
+    void ui.drawer.offsetWidth;
     requestAnimationFrame(() => {
       ui.backdrop.classList.add("is-open");
       ui.drawer.classList.add("is-open");
@@ -295,7 +302,8 @@
   }
 
   function closeDrawer() {
-    if (ui.drawer.hidden) return;
+    if (ui.drawer.hidden || state.drawerClosing) return;
+    state.drawerClosing = true;
     ui.drawer.classList.remove("is-open");
     ui.backdrop.classList.remove("is-open");
     ui.drawer.inert = true;
@@ -303,10 +311,12 @@
     ui.siteShell.inert = false;
     ui.siteShell.setAttribute("aria-hidden", "false");
     document.body.classList.remove("drawer-open");
+    document.body.style.paddingRight = state.previousBodyPaddingRight;
     state.drawerTimer = setTimeout(() => {
       ui.drawer.hidden = true;
       ui.backdrop.hidden = true;
-    }, 310);
+      state.drawerClosing = false;
+    }, 370);
     if (state.returnFocus && typeof state.returnFocus.focus === "function") state.returnFocus.focus();
   }
 
