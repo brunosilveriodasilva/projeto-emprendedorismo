@@ -1,0 +1,1000 @@
+# PROMPT PARA O CODEX — DESENVOLVIMENTO COMPLETO DO SITE BEM ADOCICADO
+
+## 1. CONTEXTO E OBJETIVO DO PROJETO
+
+Quero desenvolver um site para a **Bem Adocicado**, uma marca de doces criada como parte de um projeto escolar.
+
+O site deverá apresentar os produtos da equipe de forma profissional, moderna, minimalista e intuitiva, permitindo que os visitantes consultem o catálogo, adicionem produtos a um carrinho, informem seus dados básicos e encaminhem o pedido pelo WhatsApp.
+
+O público-alvo inclui estudantes, professores, funcionários e visitantes da escola. O site será utilizado principalmente para divulgar e vender os produtos durante a feira ou evento escolar.
+
+O projeto deve priorizar simplicidade, boa experiência de uso, desempenho, acessibilidade e facilidade de manutenção. Não quero um sistema de comércio eletrônico complexo: quero um site estático bem construído, visualmente profissional e adequado às necessidades reais da equipe.
+
+**IMPORTANTE: antes de iniciar qualquer alteração, analise os arquivos existentes no projeto.** Identifique a estrutura atual, as tecnologias utilizadas, os arquivos de identidade visual e os recursos que já existem. Preserve os elementos válidos e evite sobrescrever arquivos ou configurações sem necessidade.
+
+Não comece criando arquivos aleatórios antes de compreender a estrutura do projeto. Se já existir uma implementação, aproveite o que estiver correto e modifique somente o necessário.
+
+---
+
+## 2. IDENTIDADE VISUAL E DIREÇÃO DE DESIGN
+
+Desenvolva uma identidade visual original para a Bem Adocicado, com aparência profissional, acolhedora, moderna e minimalista.
+
+Utilize o site oficial da KitKat do Reino Unido como referência de inspiração para a experiência visual, a hierarquia de informações, a apresentação de produtos e a organização das seções:
+
+https://www.kitkat.co.uk/
+
+Essa referência deve ser usada somente para compreender princípios de design e organização. **Não copie o layout exato, logotipos, ilustrações, imagens, textos, elementos proprietários ou identidade visual da KitKat.** O resultado deve possuir personalidade própria e representar a Bem Adocicado.
+
+### Paleta de cores obrigatória
+
+Utilize as seguintes cores como base do projeto:
+
+- Vermelho principal: `#C8102E`
+- Branco quente: `#FFFDFB`
+- Preto suave: `#191919`
+- Rosa/bege suave: `#F3E9E5`
+
+Aplique as cores de maneira equilibrada:
+
+- O vermelho deve destacar botões de ação, preços, elementos importantes e detalhes da marca.
+- O branco quente deve ser a cor predominante dos fundos.
+- O preto suave deve ser utilizado principalmente nos textos.
+- O rosa/bege suave pode ser usado em seções secundárias, áreas de destaque e elementos de apoio.
+
+Evite utilizar todas as cores intensamente ao mesmo tempo. A interface deve ter bastante espaço em branco, boa hierarquia visual, tipografia legível e contraste adequado.
+
+### Estilo visual
+
+O site deverá apresentar:
+
+- Design minimalista, sem excesso de elementos decorativos.
+- Tipografia moderna, legível e consistente.
+- Espaçamento equilibrado entre seções.
+- Cartões de produtos visualmente organizados.
+- Bordas, sombras e arredondamentos discretos, quando apropriados.
+- Botões claramente identificáveis.
+- Estados visuais para interação, foco, seleção, carregamento e erros.
+- Uma experiência consistente entre computadores e dispositivos móveis.
+
+Evite aparência genérica de template, excesso de gradientes, sombras pesadas, animações chamativas, elementos desnecessários e textos excessivamente longos.
+
+---
+
+## 3. LOGOTIPO DA BEM ADOCICADO
+
+A equipe fornecerá o logotipo da Bem Adocicado em um arquivo próprio.
+
+Antes de criar ou modificar qualquer elemento visual, procure o arquivo do logotipo na estrutura existente do projeto.
+
+Requisitos:
+
+- Utilize o arquivo original fornecido pela equipe.
+- Não redesenhe o logotipo.
+- Não altere suas cores, proporções ou composição sem autorização.
+- Não estique, comprima ou distorça a imagem.
+- Preserve sua qualidade e proporção em diferentes tamanhos de tela.
+- Utilize um tamanho adequado para o cabeçalho.
+- Garanta que o logotipo permaneça legível em computadores e celulares.
+- Caso o arquivo ainda não esteja disponível, prepare um caminho de arquivo fácil de substituir e indique claramente onde ele deverá ser colocado.
+
+Não invente um logotipo definitivo nem substitua a identidade visual da equipe por uma imagem aleatória.
+
+---
+
+## 4. ESTRUTURA GERAL DA PÁGINA
+
+O site deverá ser organizado em uma única página, com navegação clara e seções bem definidas.
+
+A estrutura principal será:
+
+1. Cabeçalho com logotipo, navegação e acesso ao carrinho.
+2. Banner principal de apresentação dos produtos.
+3. Seção de Brownies.
+4. Seção de Docinhos.
+5. Seção de Bombons.
+6. Seção de Combos promocionais.
+7. Painel lateral do carrinho e finalização do pedido.
+8. Rodapé com informações de contato pertinentes.
+
+As quatro categorias do catálogo devem permanecer organizadas em seções separadas, todas na mesma página.
+
+Não crie páginas individuais para produtos, páginas separadas para cada categoria, abas de categorias ou filtros de pesquisa. A navegação deve ser simples e direta.
+
+A ordem das seções deve ser consistente tanto em computadores quanto em celulares.
+
+---
+
+## 5. CABEÇALHO E NAVEGAÇÃO
+
+O cabeçalho deverá ser compacto, elegante e funcional.
+
+### Em computadores
+
+Exiba:
+
+- Logotipo da Bem Adocicado.
+- Links de navegação para as seções da página.
+- Ícone de acesso ao carrinho.
+- Indicador visual da quantidade total de unidades no carrinho, quando houver produtos.
+
+Os links devem direcionar para as respectivas seções por meio de âncoras internas.
+
+### Em celulares
+
+Utilize um **menu hambúrguer** que abre e fecha os links de navegação.
+
+O cabeçalho móvel deverá manter:
+
+- Logotipo.
+- Botão do menu hambúrguer.
+- Acesso ao carrinho sempre visível, mesmo quando o menu estiver fechado.
+
+O menu deve abrir e fechar corretamente, não deve cobrir elementos de maneira descontrolada e deve ser fácil de utilizar com o dedo.
+
+Implemente os comportamentos necessários para acessibilidade, incluindo:
+
+- Indicação acessível do estado aberto ou fechado.
+- Navegação por teclado.
+- Foco visível.
+- Fechamento pela tecla `Esc`.
+- Fechamento após selecionar um link, quando apropriado.
+- Botão com nome acessível para leitores de tela.
+
+### Cabeçalho fixo
+
+O cabeçalho deverá permanecer visível durante a rolagem da página, mantendo uma aparência compacta.
+
+Entretanto, ele não poderá esconder os títulos das categorias ou o conteúdo para o qual os links de navegação direcionam.
+
+Utilize as técnicas adequadas de espaçamento e posicionamento para que as âncoras funcionem corretamente.
+
+---
+
+## 6. BANNER PRINCIPAL RESPONSIVO
+
+O banner deverá apresentar os produtos e convidar o visitante a conhecer o catálogo.
+
+A mensagem deve ser curta, clara e acolhedora, valorizando os doces da Bem Adocicado.
+
+Não invente informações comerciais, datas de eventos, descontos, slogans definitivos ou promessas que não tenham sido fornecidas pela equipe.
+
+### Imagens do banner
+
+A equipe criará as artes finais. Portanto, prepare a estrutura para receber duas imagens diferentes:
+
+- Uma versão para computadores.
+- Uma versão para celulares.
+
+Utilize nomes provisórios claros e fáceis de substituir, por exemplo:
+
+`assets/images/banners/banner-desktop.webp`
+
+`assets/images/banners/banner-mobile.webp`
+
+Esses nomes são sugestões de organização e podem ser adaptados à estrutura já existente do projeto.
+
+### Comportamento responsivo
+
+- Utilize a imagem de computador nas telas apropriadas.
+- Utilize a imagem móvel em dispositivos menores.
+- Prefira uma implementação responsiva com o elemento HTML `<picture>` e fontes adequadas para cada tamanho de tela.
+- Preserve as proporções e evite distorções.
+- Não corte textos ou elementos importantes da arte.
+- Evite que o banner fique excessivamente alto ou ocupe quase toda a tela do celular.
+- Não carregue desnecessariamente versões grandes de imagens quando uma versão menor for suficiente.
+- Defina textos alternativos adequados conforme o conteúdo e a finalidade das imagens.
+
+Caso as imagens finais ainda não existam, prepare uma alternativa visual provisória e claramente identificada. Não dependa de URLs externas de imagens que possam desaparecer.
+
+Os arquivos deverão ser fáceis de substituir posteriormente, sem exigir alterações complexas no código.
+
+---
+
+## 7. CATÁLOGO DE PRODUTOS
+
+O catálogo deverá conter exatamente estas quatro categorias principais:
+
+1. Brownies.
+2. Docinhos.
+3. Bombons.
+4. Combos promocionais.
+
+Cada categoria deverá ter:
+
+- Um título claro.
+- Uma breve apresentação, caso seja útil.
+- Uma grade responsiva de produtos.
+- Espaçamento consistente.
+- Cartões com a mesma linguagem visual.
+
+Todas as categorias estarão na mesma página, uma abaixo da outra.
+
+Os links do cabeçalho e do menu móvel deverão levar diretamente às respectivas seções.
+
+Não implemente filtros, abas, pesquisa avançada, ordenação ou funcionalidades que não foram solicitadas.
+
+### Quantidade de produtos
+
+Como a equipe ainda não definiu o catálogo definitivo, crie alguns produtos fictícios provisórios em cada categoria para demonstrar a estrutura visual e funcional.
+
+Esses produtos devem ser identificados claramente como dados de demonstração durante o desenvolvimento.
+
+Não apresente produtos fictícios como se fossem o estoque real da equipe.
+
+Os nomes, descrições, preços, categorias e imagens deverão ser fáceis de substituir antes da utilização real do site.
+
+### Cartões de produtos
+
+Cada cartão deverá conter:
+
+- Imagem do produto.
+- Nome.
+- Descrição curta.
+- Preço em reais.
+- Botão “Adicionar ao carrinho”.
+
+Os cartões devem ser visualmente consistentes e responsivos.
+
+As imagens devem manter proporções adequadas, sem distorções. Evite que imagens de alturas diferentes desorganizem excessivamente a grade.
+
+Os botões deverão ter estados de foco, hover e pressionamento, além de uma resposta visual discreta após a adição do produto ao carrinho.
+
+### Organização dos dados
+
+Mantenha os produtos em uma estrutura de dados centralizada, fácil de editar.
+
+Cada produto deverá ter, no mínimo, campos equivalentes a:
+
+- Identificador único.
+- Nome.
+- Descrição.
+- Preço.
+- Categoria.
+- Caminho da imagem.
+- Indicação de que é um dado provisório, quando aplicável.
+
+Os cartões deverão ser gerados a partir dessa estrutura, evitando duplicação desnecessária de código.
+
+Não espalhe os dados de um mesmo produto por vários arquivos sem necessidade.
+
+### Preços e dados provisórios
+
+Os preços definitivos ainda serão fornecidos pela equipe.
+
+Use valores claramente identificados como exemplos somente para demonstrar a interface. Deixe explícito na documentação e nos próprios dados quais valores precisam ser substituídos.
+
+Antes da publicação para clientes reais, todos os preços e produtos provisórios deverão ser substituídos por dados confirmados.
+
+Não utilize os preços do documento escolar como se já fossem os preços finais do catálogo.
+
+### Combos promocionais
+
+Os combos deverão aparecer em uma seção própria.
+
+Apresente:
+
+- Imagem do combo.
+- Nome.
+- Descrição.
+- Preço atual.
+- Etiqueta discreta, como “Combo especial”.
+- Botão “Adicionar ao carrinho”.
+
+**Não exiba preço original riscado nem porcentagem de desconto.** A decisão definida é mostrar o preço atual com uma etiqueta de destaque, sem afirmar a existência de descontos não confirmados.
+
+---
+
+## 8. IMAGENS DOS PRODUTOS
+
+A equipe substituirá as imagens provisórias posteriormente.
+
+Organize os arquivos em uma pasta clara, por exemplo:
+
+`assets/images/products/`
+
+Utilize nomes de arquivos descritivos e fáceis de localizar.
+
+Requisitos:
+
+- Evitar imagens externas como dependência obrigatória do catálogo.
+- Utilizar caminhos locais para as imagens do projeto.
+- Manter os caminhos fáceis de editar.
+- Preservar a proporção das imagens.
+- Evitar imagens quebradas.
+- Preparar alternativas visuais para imagens ausentes.
+- Utilizar textos alternativos apropriados.
+- Otimizar o carregamento das imagens, sem prejudicar sua qualidade.
+
+Quando fizer sentido, utilize imagens em formatos eficientes, como WebP, desde que a equipe consiga substituir os arquivos com facilidade.
+
+Não crie artes definitivas dos produtos. Os recursos visuais de demonstração deverão ser tratados como provisórios.
+
+---
+
+## 9. CARRINHO DE COMPRAS
+
+O carrinho será um painel lateral, também conhecido como drawer.
+
+Ele deverá abrir sem levar o visitante para outra página e sem substituir o catálogo.
+
+O acesso ao carrinho deverá permanecer disponível no cabeçalho, inclusive em dispositivos móveis.
+
+### Conteúdo do carrinho
+
+O painel deverá apresentar:
+
+- Nome do produto.
+- Imagem em tamanho reduzido, quando apropriado.
+- Preço unitário.
+- Quantidade.
+- Subtotal do item.
+- Controles para aumentar e diminuir a quantidade.
+- Opção para remover o item.
+- Total geral do pedido.
+- Botão para continuar comprando.
+- Acesso à etapa de finalização do pedido.
+
+### Regras de funcionamento
+
+1. Ao clicar em “Adicionar ao carrinho”, o produto deverá ser adicionado.
+2. Se o mesmo produto for adicionado novamente, sua quantidade deverá aumentar na linha existente, em vez de criar linhas duplicadas.
+3. O usuário poderá aumentar ou diminuir a quantidade dentro do carrinho.
+4. Ao chegar a zero, a quantidade não deverá permanecer inválida; o item poderá ser removido.
+5. O usuário poderá remover produtos diretamente.
+6. Os subtotais deverão ser atualizados automaticamente.
+7. O total geral deverá ser recalculado sempre que houver alterações.
+8. O indicador do cabeçalho deverá refletir a quantidade total de unidades.
+9. Ao remover o último produto, o carrinho deverá exibir seu estado vazio.
+10. Não permita quantidades negativas, valores inválidos ou cálculos incorretos.
+
+### Cálculos
+
+O subtotal de cada item deverá ser calculado a partir do preço unitário multiplicado pela quantidade.
+
+O total geral deverá corresponder à soma dos subtotais.
+
+Utilize uma estratégia adequada para evitar erros de precisão em operações monetárias, preferencialmente trabalhando com valores inteiros em centavos nos cálculos internos.
+
+Exiba os valores no padrão brasileiro:
+
+- `R$ 6,00`
+- `R$ 12,50`
+- `R$ 0,00`
+
+Utilize uma formatação monetária consistente em todo o site.
+
+### Estado vazio
+
+Quando o carrinho estiver vazio, mostre uma mensagem clara, acolhedora e curta, informando que nenhum produto foi adicionado.
+
+Inclua um botão para retornar ao catálogo.
+
+### Layout do painel
+
+O painel deverá ter uma área de conteúdo que possa rolar independentemente.
+
+A área inferior, contendo o total e os principais botões de ação, deverá permanecer visível enquanto o usuário percorre os itens.
+
+Em outras palavras:
+
+- Produtos e formulário: área rolável.
+- Total e ação principal: área inferior fixa dentro do painel.
+
+Essa estrutura deverá funcionar corretamente em computadores e celulares, sem esconder campos ou botões.
+
+Implemente também o fechamento por um botão visível, pela tecla `Esc` e, quando apropriado, ao clicar fora do painel.
+
+O painel deverá utilizar atributos e comportamentos acessíveis, com gerenciamento correto do foco e retorno do foco ao botão que o abriu.
+
+---
+
+## 10. FINALIZAÇÃO DO PEDIDO
+
+A finalização deverá acontecer dentro do próprio painel lateral do carrinho.
+
+Não crie uma nova página de checkout nem uma janela modal central separada.
+
+Quando o usuário escolher finalizar o pedido, apresente um formulário dentro do painel.
+
+O formulário deverá solicitar somente as informações necessárias para preparar o pedido.
+
+### Campos obrigatórios
+
+**1. Nome**
+
+Campo de texto para identificar o cliente.
+
+**2. Turma**
+
+Campo de texto para informar a turma do cliente.
+
+**3. Forma de recebimento**
+
+Campo de seleção obrigatório com duas opções:
+
+- Retirada no ponto de venda da escola.
+- Entrega dentro da escola.
+
+**4. Observações**
+
+Campo opcional para informações adicionais sobre o pedido.
+
+### Regras de recebimento
+
+A equipe oferecerá as duas formas de recebimento:
+
+- Retirada no ponto de venda da escola.
+- Entrega dentro da escola.
+
+Para entregas internas, o nome e a turma serão suficientes para iniciar a combinação do pedido. Os detalhes da entrega serão acertados diretamente pelo WhatsApp.
+
+Não crie campos obrigatórios para sala, bloco, endereço residencial, número de telefone adicional ou outras informações que não foram solicitadas.
+
+### Validação
+
+Antes de preparar a mensagem para o WhatsApp, valide:
+
+- Nome preenchido.
+- Turma preenchida.
+- Forma de recebimento selecionada.
+- Existência de pelo menos um produto no carrinho.
+- Quantidades válidas.
+- Preços e valores consistentes.
+
+As mensagens de erro deverão ser claras, próximas dos respectivos campos e acessíveis.
+
+Preserve os dados preenchidos enquanto o usuário corrige erros.
+
+### Pagamento
+
+O pagamento será combinado diretamente pelo WhatsApp.
+
+Não implemente:
+
+- Pagamento por cartão.
+- Integração com banco.
+- Pix automático.
+- Gateway de pagamento.
+- Coleta de dados bancários.
+- Armazenamento de informações financeiras.
+
+Não invente métodos de pagamento específicos como se já estivessem confirmados pela equipe.
+
+---
+
+## 11. INTEGRAÇÃO COM WHATSAPP
+
+O encaminhamento do pedido será feito pelo WhatsApp da responsável:
+
+**Maria Luiza — +55 48 9177-1605**
+
+O número deverá ficar centralizado em uma configuração fácil de localizar, para permitir sua alteração sem precisar procurar o número em vários arquivos.
+
+Utilize o formato internacional apropriado ao construir o link do WhatsApp, com o código do Brasil e o DDD, removendo caracteres de formatação do número quando necessário.
+
+Não espalhe o número por vários componentes.
+
+### Funcionamento esperado
+
+Quando o usuário preencher o formulário e clicar no botão de finalização:
+
+1. Valide os campos obrigatórios.
+2. Verifique se o carrinho contém produtos.
+3. Prepare uma mensagem organizada com os detalhes do pedido.
+4. Codifique corretamente a mensagem para utilização em uma URL.
+5. Abra o WhatsApp no contato configurado, com a mensagem preenchida.
+6. Preserve o carrinho e os dados preenchidos no site caso o usuário volte à página.
+
+O usuário deverá revisar a mensagem e pressionar o botão de envio no próprio WhatsApp.
+
+**Abrir o WhatsApp não significa que o pedido foi enviado ou confirmado.**
+
+Não mostre mensagens como “Pedido enviado com sucesso”, “Pedido confirmado” ou qualquer indicação de que a responsável recebeu o pedido antes que isso realmente seja confirmado.
+
+Utilize uma mensagem de interface que explique que o usuário será direcionado ao WhatsApp para revisar e enviar o pedido.
+
+### Conteúdo da mensagem
+
+A mensagem deverá ser organizada e fácil de ler, contendo:
+
+- Saudação.
+- Identificação do pedido.
+- Nome do cliente.
+- Turma.
+- Forma de recebimento escolhida.
+- Lista de produtos.
+- Quantidade de cada produto.
+- Preço unitário de cada item.
+- Subtotal de cada item.
+- Total geral.
+- Observações, quando preenchidas.
+
+Utilize quebras de linha e separadores para facilitar a leitura.
+
+Os valores devem ser formatados em reais.
+
+Exemplo estrutural, com dados fictícios:
+
+Olá! Gostaria de fazer um pedido na Bem Adocicado.
+
+*Dados do cliente*
+Nome: [nome]
+Turma: [turma]
+Recebimento: [forma escolhida]
+
+*Produtos*
+[quantidade]x [nome do produto] — [preço unitário]
+Subtotal: [subtotal]
+
+*Total do pedido:* [total]
+
+*Observações:* [observações, quando houver]
+
+Por favor, vamos combinar os detalhes do recebimento e do pagamento.
+
+Esse exemplo serve somente para definir a organização da mensagem. O conteúdo final deverá utilizar os dados reais inseridos pelo cliente.
+
+### Segurança e confiabilidade
+
+- Codifique a mensagem corretamente.
+- Trate caracteres especiais, acentos e quebras de linha.
+- Não insira valores diretamente na URL sem codificação adequada.
+- Não aceite valores de preços enviados pelo formulário como fonte confiável.
+- Gere os detalhes do pedido a partir do catálogo e do estado do carrinho.
+- Não permita que a quantidade ou o total sejam negativos.
+- Não informe que a mensagem foi enviada quando somente o aplicativo foi aberto.
+
+---
+
+## 12. PERSISTÊNCIA DOS DADOS DURANTE A NAVEGAÇÃO
+
+Não haverá banco de dados.
+
+O carrinho e os dados do formulário deverão permanecer disponíveis enquanto o usuário navega entre as seções e utiliza o painel.
+
+Se o usuário abrir o WhatsApp e retornar ao site, o carrinho e os campos preenchidos deverão ser preservados sempre que possível.
+
+Priorize uma solução simples e adequada ao projeto, sem introduzir uma infraestrutura desnecessária.
+
+A persistência não deverá ser apresentada como garantia de armazenamento permanente. Não prometa que os dados continuarão disponíveis após o fechamento da sessão, limpeza dos dados do navegador ou outras situações que possam removê-los.
+
+Se for necessário utilizar armazenamento local ou de sessão, documente claramente o comportamento e evite armazenar informações pessoais desnecessárias.
+
+Não implemente banco de dados, backend, API própria ou painel administrativo para gerenciar pedidos.
+
+---
+
+## 13. RODAPÉ
+
+O rodapé deverá ser curto, organizado e coerente com a identidade visual.
+
+Poderá conter:
+
+- Nome ou logotipo da Bem Adocicado.
+- Uma frase breve sobre a marca.
+- Atalhos para as seções principais.
+- Informação de contato pelo WhatsApp, quando pertinente.
+- Identificação discreta de que o site faz parte de um projeto escolar, caso isso seja adequado à apresentação final.
+
+Não invente endereço, redes sociais, e-mail, horário de funcionamento, políticas comerciais ou outras informações que não tenham sido fornecidas.
+
+Evite um rodapé excessivamente grande ou cheio de elementos desnecessários.
+
+---
+
+## 14. RESPONSIVIDADE
+
+O site deverá funcionar adequadamente em diferentes tamanhos de tela.
+
+Considere, no mínimo:
+
+- Celulares pequenos.
+- Celulares grandes.
+- Tablets.
+- Notebooks.
+- Monitores de computadores.
+
+Não basta reduzir o tamanho dos elementos para dispositivos móveis. A organização deve se adaptar de maneira adequada.
+
+### Requisitos
+
+- Cabeçalho adaptável.
+- Menu hambúrguer em celulares.
+- Carrinho acessível em todas as resoluções.
+- Banner com imagem apropriada para cada dispositivo.
+- Grade de produtos responsiva.
+- Cartões legíveis e com botões fáceis de tocar.
+- Painel do carrinho adequado a telas estreitas.
+- Formulário com campos confortáveis para preenchimento.
+- Ausência de rolagem horizontal indesejada.
+- Nenhum texto, imagem ou botão cortado.
+- Rodapé adaptável.
+- Espaçamentos adequados.
+- Respeito às áreas seguras dos dispositivos quando necessário.
+
+Não escolha pontos de quebra arbitrários sem verificar o comportamento real dos componentes.
+
+---
+
+## 15. ACESSIBILIDADE E PADRÕES W3C
+
+O projeto deverá seguir boas práticas de HTML semântico, acessibilidade e desenvolvimento web.
+
+Utilize as recomendações relevantes do W3C e tenha como objetivo de implementação as diretrizes WCAG 2.2 nível AA.
+
+Não declare conformidade total sem realizar testes adequados.
+
+### HTML semântico
+
+Utilize os elementos apropriados para cada finalidade, como:
+
+- `header`
+- `nav`
+- `main`
+- `section`
+- `article`, quando apropriado
+- `footer`
+- `button`
+- `form`
+- `label`
+
+Não utilize elementos HTML somente para obter um efeito visual quando existir um elemento semântico mais adequado.
+
+### Teclado
+
+Todas as funcionalidades essenciais deverão funcionar por teclado, incluindo:
+
+- Links de navegação.
+- Menu hambúrguer.
+- Abertura e fechamento do carrinho.
+- Botões de quantidade.
+- Remoção de produtos.
+- Campos do formulário.
+- Seleção da forma de recebimento.
+- Finalização do pedido.
+
+Mantenha indicadores de foco claramente visíveis.
+
+### Leitores de tela
+
+- Utilize rótulos associados aos campos.
+- Forneça nomes acessíveis aos botões de ícone.
+- Utilize atributos ARIA somente quando apropriado.
+- Informe mudanças importantes no carrinho de forma acessível.
+- Garanta que os controles de quantidade e remoção identifiquem o produto correspondente.
+- Identifique os erros dos formulários de maneira clara.
+
+### Contraste e conteúdo
+
+- Garanta contraste suficiente entre texto e fundo.
+- Não dependa exclusivamente das cores para comunicar estados.
+- Forneça textos alternativos apropriados para as imagens.
+- Evite textos muito pequenos.
+- Respeite a preferência `prefers-reduced-motion`.
+
+---
+
+## 16. ANIMAÇÕES E INTERAÇÕES
+
+Utilize somente animações discretas, destinadas a melhorar a percepção de interação.
+
+Animações desejadas:
+
+- Abertura e fechamento suaves do carrinho.
+- Abertura e fechamento discretos do menu móvel.
+- Hover e foco nos botões.
+- Feedback visual ao adicionar um produto.
+- Transições sutis de cores e estados.
+
+Não utilize animações pesadas, efeitos excessivos, elementos que piscam ou movimentos que dificultem a leitura.
+
+Evite bibliotecas de animação grandes quando CSS simples for suficiente.
+
+Respeite a preferência do usuário por movimento reduzido, desativando ou simplificando animações quando necessário.
+
+As animações não devem impedir a interação nem causar deslocamentos inesperados na página.
+
+---
+
+## 17. TECNOLOGIAS E ARQUITETURA
+
+A preferência é utilizar tecnologias simples, adequadas a um site estático:
+
+- HTML semântico.
+- CSS.
+- JavaScript.
+
+Se o projeto existente já utilizar uma estrutura apropriada, avalie-a antes de propor mudanças.
+
+Não introduza frameworks, bibliotecas ou ferramentas pesadas sem uma justificativa concreta.
+
+### Arquitetura desejada
+
+Organize o projeto de forma clara, separando, quando apropriado:
+
+- Estrutura HTML.
+- Estilos.
+- Lógica de interação.
+- Dados do catálogo.
+- Configurações editáveis.
+- Logotipo.
+- Imagens dos banners.
+- Imagens dos produtos.
+
+Os nomes e a organização exatos dos arquivos deverão respeitar a estrutura já existente, desde que ela permaneça clara e fácil de manter.
+
+### Configuração centralizada
+
+Mantenha em um local fácil de encontrar:
+
+- Número do WhatsApp.
+- Dados do catálogo.
+- Preços.
+- Categorias.
+- Caminhos das imagens.
+- Textos provisórios que precisem ser substituídos.
+
+Evite duplicação de dados e dependências desnecessárias entre componentes.
+
+### Qualidade do código
+
+O código deverá ser legível, organizado e consistente.
+
+Evite:
+
+- Repetição desnecessária.
+- Funções excessivamente grandes.
+- Variáveis globais sem necessidade.
+- Manipulação insegura de conteúdo.
+- Dependências desnecessárias.
+- Código morto.
+- Erros no console.
+- Funções que aparentem funcionar, mas não executem a ação anunciada.
+
+Utilize nomes de variáveis e funções claros e mantenha comentários onde realmente ajudarem na manutenção.
+
+---
+
+## 18. DESEMPENHO
+
+O site deverá carregar rapidamente, inclusive em conexões móveis.
+
+Priorize:
+
+- Arquivos de imagem otimizados.
+- Carregamento adequado das imagens.
+- CSS e JavaScript sem excesso.
+- Dependências mínimas.
+- Evitar grandes bibliotecas para funcionalidades simples.
+- Evitar solicitações externas desnecessárias.
+- Reduzir mudanças inesperadas de layout.
+- Evitar recálculos desnecessários do carrinho.
+- Manter a interface responsiva durante as interações.
+
+Não sacrifique a acessibilidade ou a qualidade visual em nome de pequenas otimizações sem impacto relevante.
+
+---
+
+## 19. PRIVACIDADE E SEGURANÇA
+
+O projeto não terá banco de dados nem sistema próprio de armazenamento de pedidos.
+
+Colete somente as informações necessárias para montar a mensagem do WhatsApp:
+
+- Nome.
+- Turma.
+- Forma de recebimento.
+- Observações opcionais.
+
+Não solicite documentos pessoais, endereço residencial, dados bancários ou outras informações desnecessárias.
+
+Não implemente rastreamento de usuários, coleta desnecessária de dados ou integrações externas sem justificativa.
+
+Valide os dados dos formulários e manipule o conteúdo inserido pelo usuário de forma segura.
+
+Não insira conteúdo fornecido pelo usuário diretamente em HTML executável.
+
+Não armazene informações pessoais permanentemente sem necessidade e sem informar claramente o comportamento da aplicação.
+
+---
+
+## 20. RESTRIÇÕES DO PROJETO
+
+As seguintes restrições são obrigatórias:
+
+- Não criar banco de dados.
+- Não criar backend.
+- Não criar painel administrativo.
+- Não implementar processamento de pagamentos.
+- Não criar páginas individuais para produtos.
+- Não implementar abas ou filtros de catálogo.
+- Não inventar preços definitivos.
+- Não inventar informações comerciais.
+- Não substituir o logotipo original sem autorização.
+- Não criar as artes finais dos banners ou produtos.
+- Não copiar a identidade visual da KitKat.
+- Não afirmar que um pedido foi enviado ou confirmado apenas porque o WhatsApp foi aberto.
+- Não implementar funcionalidades complexas que não contribuam para o objetivo do projeto.
+
+O catálogo será mantido diretamente nos arquivos do projeto. Os pedidos serão encaminhados manualmente pelo cliente por meio do WhatsApp.
+
+---
+
+## 21. COMPATIBILIDADE COM HOSPEDAGEM ESTÁTICA
+
+A implementação deverá ser compatível com hospedagem de arquivos estáticos, sem exigir servidor próprio.
+
+Não configure uma infraestrutura de backend.
+
+Evite depender de funcionalidades que exijam execução de servidor, banco de dados ou variáveis secretas.
+
+Se for necessário discutir hospedagem, avalie separadamente as opções adequadas ao uso pretendido. Não presuma que a hospedagem já foi definida e não publique o site em um serviço externo sem autorização.
+
+Antes da utilização real, verifique também os termos e limitações do serviço de hospedagem escolhido.
+
+---
+
+## 22. TESTES OBRIGATÓRIOS
+
+Depois de implementar o site, realize testes funcionais e visuais.
+
+Não considere o projeto concluído apenas porque a página abre no navegador.
+
+### Catálogo
+
+- Todas as quatro categorias aparecem corretamente.
+- Os links de navegação levam às seções certas.
+- Todos os cartões apresentam as informações previstas.
+- Os dados provisórios estão claramente identificados.
+- As imagens ausentes não quebram o layout.
+
+### Carrinho
+
+- Adicionar um produto funciona.
+- Adicionar novamente o mesmo produto incrementa sua quantidade.
+- Aumentar e diminuir quantidades funciona.
+- Remover produtos funciona.
+- Os subtotais são calculados corretamente.
+- O total geral é recalculado corretamente.
+- O estado vazio é exibido quando necessário.
+- O indicador de quantidade no cabeçalho é atualizado.
+- O total e os botões inferiores continuam acessíveis durante a rolagem.
+
+### Finalização
+
+- Nome e turma são obrigatórios.
+- A forma de recebimento é obrigatória.
+- Observações são opcionais.
+- Os erros são exibidos corretamente.
+- A finalização não funciona com carrinho vazio.
+- Os dados inseridos permanecem disponíveis quando o usuário corrige erros.
+
+### WhatsApp
+
+- O número de destino está correto e centralizado na configuração.
+- O link abre o contato esperado.
+- A mensagem é codificada corretamente.
+- Acentos, caracteres especiais e quebras de linha são preservados.
+- Produtos, quantidades e valores correspondem ao carrinho.
+- O total informado corresponde ao total calculado no site.
+- A mensagem é preenchida, mas o usuário ainda precisa enviá-la.
+- O carrinho e os dados preenchidos permanecem disponíveis quando o usuário retorna ao site.
+- A interface não afirma falsamente que o pedido foi enviado ou confirmado.
+
+### Responsividade
+
+Teste o site em larguras de tela diferentes.
+
+Verifique especialmente:
+
+- Menu hambúrguer.
+- Cabeçalho fixo.
+- Banner para computador e celular.
+- Grade de produtos.
+- Carrinho lateral.
+- Área inferior fixa do carrinho.
+- Formulário de finalização.
+- Rodapé.
+
+### Acessibilidade
+
+- Navegação por teclado.
+- Indicadores de foco.
+- Rótulos dos formulários.
+- Contraste.
+- Textos alternativos.
+- Fechamento do menu e do carrinho por teclado.
+- Funcionamento com movimento reduzido.
+- Ausência de bloqueios importantes para leitores de tela.
+
+### Qualidade técnica
+
+- Nenhum erro crítico no console.
+- Nenhum link interno quebrado.
+- Nenhum botão sem ação.
+- Nenhuma dependência de arquivo inexistente.
+- Nenhuma referência desnecessária a serviços externos.
+- Nenhuma regressão em funcionalidades já existentes.
+
+Corrija os problemas identificados antes de considerar a implementação concluída.
+
+---
+
+## 23. ENTREGA E DOCUMENTAÇÃO
+
+Ao terminar, apresente um resumo claro contendo:
+
+1. O que foi implementado.
+2. Quais arquivos foram criados ou modificados.
+3. Como executar e testar o site localmente.
+4. Onde substituir o logotipo, caso ainda não esteja presente.
+5. Onde colocar as imagens finais do banner para computador e celular.
+6. Onde substituir as imagens dos produtos.
+7. Onde editar nomes, descrições, preços e categorias.
+8. Onde alterar o número do WhatsApp.
+9. Quais dados continuam provisórios.
+10. Quais testes foram realizados e seus resultados.
+11. Quais limitações ou pendências permanecem.
+
+Não afirme que testes foram realizados se eles não foram executados.
+
+Se alguma funcionalidade não puder ser concluída, explique o motivo e indique o que falta, sem esconder erros ou apresentar resultados fictícios.
+
+---
+
+## 24. ORDEM DE EXECUÇÃO
+
+Siga esta ordem de trabalho:
+
+**Etapa 1 — Análise**
+
+Inspecione a estrutura atual do projeto, identifique os arquivos existentes, as tecnologias, o logotipo e os recursos disponíveis.
+
+**Etapa 2 — Planejamento**
+
+Defina a organização dos componentes, arquivos, dados do catálogo e configurações editáveis. Evite alterações desnecessárias.
+
+**Etapa 3 — Implementação**
+
+Construa a página, a navegação, os banners responsivos, o catálogo, o carrinho, o formulário e a integração com o WhatsApp.
+
+**Etapa 4 — Responsividade e acessibilidade**
+
+Revise os comportamentos em computadores e celulares, incluindo navegação por teclado e leitores de tela.
+
+**Etapa 5 — Testes**
+
+Verifique os cálculos, o carrinho, a validação, a mensagem do WhatsApp, as imagens e o comportamento da interface.
+
+**Etapa 6 — Revisão final**
+
+Corrija os problemas encontrados e documente a estrutura, as configurações e os dados que precisarão ser substituídos.
+
+Não pule diretamente para a criação visual sem compreender o projeto existente.
+
+---
+
+## 25. RESULTADO ESPERADO
+
+Entregue um site completo e funcional para a Bem Adocicado, com identidade visual original, aparência profissional e estrutura simples de manter.
+
+O visitante deverá conseguir conhecer os produtos, navegar pelas categorias, adicionar itens ao carrinho, alterar quantidades, conferir os valores, preencher seus dados básicos e preparar um pedido para encaminhamento pelo WhatsApp.
+
+A experiência deverá ser consistente em computadores e celulares, com banner responsivo, navegação adaptável, carrinho lateral, formulário acessível e apresentação clara dos preços.
+
+O código deverá permanecer organizado e os dados provisórios deverão ser fáceis de substituir quando a equipe definir os produtos, os preços e as imagens finais.
+
+**Prioridades, em ordem:**
+
+1. Funcionamento correto de todas as funcionalidades.
+2. Experiência de uso simples e intuitiva.
+3. Design profissional, minimalista e consistente.
+4. Responsividade.
+5. Acessibilidade.
+6. Desempenho.
+7. Facilidade de manutenção.
+
+Implemente o projeto com cuidado, sem adicionar funcionalidades desnecessárias e sem tomar decisões comerciais que não foram autorizadas.
+
+O resultado deve parecer um site real e bem elaborado, e não apenas uma demonstração visual estática.
