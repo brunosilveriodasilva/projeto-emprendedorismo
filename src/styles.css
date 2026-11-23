@@ -70,10 +70,10 @@ h1, h2, h3, p { margin-top: 0; }
 .hero-carousel-slide.is-active { z-index: 1; opacity: 1; visibility: visible; transform: translateX(0); transition-delay: 0s; pointer-events: auto; }
 .hero-banner-placeholder { position: absolute; inset: 0; display: grid; place-items: center; background: transparent; }
 .hero-banner-image { position: absolute; top: 9px; left: 9px; display: block; width: calc(100% - 18px); height: calc(100% - 18px); border-radius: 8px; object-fit: cover; box-shadow: 0 4px 14px rgba(25,25,25,.12); transform: scale(1); transition: transform .85s ease; }
-.hero-carousel-control { position: absolute; z-index: 3; top: 50%; width: 36px; height: 36px; padding: 0; border: 1px solid rgba(0,0,0,.32); border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,.74); color: #000; box-shadow: 0 3px 10px rgba(0,0,0,.14); cursor: pointer; transform: translateY(-50%); transition: color var(--hero-transition-duration) var(--hero-transition-easing), background-color var(--hero-transition-duration) var(--hero-transition-easing), border-color var(--hero-transition-duration) var(--hero-transition-easing), box-shadow var(--hero-transition-duration) var(--hero-transition-easing), transform var(--hero-transition-duration) var(--hero-transition-easing); }
+.hero-carousel-control { position: absolute; z-index: 3; top: 50%; width: 36px; height: 36px; padding: 0; border: 1px solid rgba(0,0,0,.32); border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,.74); color: #000; box-shadow: 0 3px 10px rgba(0,0,0,.14); cursor: pointer; transform: translateY(-50%); transition: width var(--hero-transition-duration) var(--hero-transition-easing), height var(--hero-transition-duration) var(--hero-transition-easing), color var(--hero-transition-duration) var(--hero-transition-easing), background-color var(--hero-transition-duration) var(--hero-transition-easing), border-color var(--hero-transition-duration) var(--hero-transition-easing), box-shadow var(--hero-transition-duration) var(--hero-transition-easing), transform var(--hero-transition-duration) var(--hero-transition-easing); }
 .hero-carousel-control--previous { left: 16px; }
 .hero-carousel-control--next { right: 16px; }
-.hero-carousel-control svg { display: block; flex: 0 0 15px; width: 15px; height: 15px; margin: 0; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.hero-carousel-control svg { display: block; flex: 0 0 15px; width: 15px; height: 15px; margin: 0; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; transition: flex-basis var(--hero-transition-duration) var(--hero-transition-easing), width var(--hero-transition-duration) var(--hero-transition-easing), height var(--hero-transition-duration) var(--hero-transition-easing); }
 .hero-carousel-control:hover:not(:disabled) { border-color: rgba(0,0,0,.5); background: rgba(255,255,255,.9); color: #000; box-shadow: 0 5px 12px rgba(0,0,0,.2); transform: translateY(-50%); }
 .hero-carousel-control:active:not(:disabled) { transform: translateY(-50%) scale(.97); }
 .hero-carousel-indicators { position: absolute; z-index: 3; right: 0; bottom: 15px; left: 0; display: flex; justify-content: center; align-items: center; gap: 8px; }
@@ -258,7 +258,8 @@ h1, h2, h3, p { margin-top: 0; }
   .button { min-height: 45px; padding: 0 15px; }
   .hero-note { font-size: 9px; }
   .hero-visual { width: 100%; max-width: none; aspect-ratio: 1; }
-  .hero-carousel-control { width: 34px; height: 34px; }
+  .hero-carousel-control { width: 40px; height: 40px; }
+  .hero-carousel-control svg { flex-basis: 17px; width: 17px; height: 17px; }
   .hero-carousel-control--previous { left: 10px; }
   .hero-carousel-control--next { right: 10px; }
   .hero-carousel-indicators { bottom: 12px; }
