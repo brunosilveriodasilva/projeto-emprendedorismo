@@ -416,7 +416,12 @@ function renderCart() {
   cartItemsRoot.replaceChildren();
   if (!cart.length) {
     const empty = makeElement('div', 'empty-cart');
-    empty.append(makeElement('span', 'empty-cart-mark', 'BA'), makeElement('h3', '', 'Sua sacola está vazia'), makeElement('p', '', 'Escolha alguns doces para começar.'));
+    const mark = makeElement('div', 'empty-cart-mark');
+    const logo = makeElement('img', 'empty-cart-logo');
+    logo.src = 'assets/images/branding/logo_crying.png';
+    logo.alt = 'Mascote da Bem Adocicado';
+    mark.append(logo);
+    empty.append(mark, makeElement('h3', '', 'Sua sacola está vazia'), makeElement('p', '', 'Escolha alguns doces para começar.'));
     cartItemsRoot.append(empty);
     checkoutVisible = false;
     checkout.hidden = true;

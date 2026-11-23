@@ -2,6 +2,9 @@
   color-scheme: light;
   --red: #c8102e;
   --red-dark: #a70c25;
+  --footer-background: #211d1b;
+  --scrollbar-thumb: #504b49;
+  --scrollbar-thumb-hover: #403b39;
   --cream: #fffdfb;
   --ink: #191919;
   --muted: #77716e;
@@ -15,7 +18,18 @@
   --header-height: 82px;
 }
 
-* { box-sizing: border-box; }
+* { box-sizing: border-box; scrollbar-color: var(--scrollbar-thumb) var(--footer-background); }
+*::-webkit-scrollbar { background-color: var(--footer-background); }
+*::-webkit-scrollbar-track { background-color: var(--footer-background); }
+*::-webkit-scrollbar-thumb { background-color: var(--scrollbar-thumb); border: 2px solid var(--footer-background); border-radius: 999px; transition: background-color .18s ease; }
+*::-webkit-scrollbar-thumb:hover { background-color: var(--scrollbar-thumb-hover); }
+*::-webkit-scrollbar-button { background-color: var(--footer-background); }
+*::-webkit-scrollbar-button:vertical { height: 14px; }
+*::-webkit-scrollbar-button:horizontal { width: 14px; }
+*::-webkit-scrollbar-button:vertical:decrement { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M3 7 6 4l3 3' fill='none' stroke='%23fff' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-position: center; background-repeat: no-repeat; }
+*::-webkit-scrollbar-button:vertical:increment { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M3 5 6 8l3-3' fill='none' stroke='%23fff' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-position: center; background-repeat: no-repeat; }
+*::-webkit-scrollbar-button:horizontal:decrement { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M7 3 4 6l3 3' fill='none' stroke='%23fff' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-position: center; background-repeat: no-repeat; }
+*::-webkit-scrollbar-button:horizontal:increment { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M5 3 8 6l-3 3' fill='none' stroke='%23fff' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-position: center; background-repeat: no-repeat; }
 html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-height) + 24px); }
 body { margin: 0; background: var(--cream); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
 body.drawer-open { overflow: hidden; }
@@ -137,7 +151,7 @@ h1, h2, h3, p { margin-top: 0; }
 .whatsapp-contact-button:hover { transform: translateY(-2px); border-color: var(--red-dark); background: #fffafa; color: var(--red-dark); box-shadow: 0 8px 18px -4px rgba(167,12,37,.26); }
 .whatsapp-contact-button:active { transform: translateY(0) scale(.97); }
 
-.site-footer { padding: 48px max(32px, calc((100vw - 1260px) / 2)) 18px; background: #211d1b; color: #fffaf7; }
+.site-footer { padding: 48px max(32px, calc((100vw - 1260px) / 2)) 18px; background: var(--footer-background); color: #fffaf7; }
 .footer-main { display: grid; grid-template-columns: 1.2fr 1fr 1.5fr; gap: 30px; align-items: center; padding-bottom: 37px; }
 .footer-brand { display: flex; align-items: center; gap: 11px; text-decoration: none; font-family: var(--serif); font-size: 19px; line-height: 1.05; }
 .footer-brand img { width: 51px; height: 51px; object-fit: contain; border-radius: 50%; }
@@ -163,6 +177,7 @@ h1, h2, h3, p { margin-top: 0; }
 .cart-items { padding: 5px 0; }
 .empty-cart { min-height: 240px; display: grid; place-content: center; text-align: center; }
 .empty-cart-mark { margin: 0 auto 15px; display: grid; place-items: center; width: 49px; height: 49px; border-radius: 50%; background: var(--beige); color: var(--red); font-family: var(--serif); font-size: 23px; }
+.empty-cart-logo { display: block; width: 34px; height: 34px; object-fit: contain; }
 .empty-cart h3 { margin: 0 0 7px; font-family: var(--serif); font-size: 21px; font-weight: 500; }
 .empty-cart p { margin: 0; color: var(--muted); font-size: 11px; }
 .cart-line { display: grid; grid-template-columns: 1fr auto; gap: 13px; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--line); }
