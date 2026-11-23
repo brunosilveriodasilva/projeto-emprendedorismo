@@ -98,10 +98,10 @@
         <div class="checkout" id="checkout" hidden>
           <div class="checkout-heading"><span class="step-number">02</span><div><p class="eyebrow">QUASE LÁ</p><h3>Seus dados</h3></div></div>
           <form id="checkout-form" novalidate>
-            <div class="field"><label for="customer-name">Nome <span aria-hidden="true">*</span></label><input id="customer-name" name="name" autocomplete="name" maxlength="80" required /><p class="field-error" id="name-error"></p></div>
-            <div class="field"><label for="customer-class">Turma <span aria-hidden="true">*</span></label><input id="customer-class" name="class" maxlength="40" required /><p class="field-error" id="class-error"></p></div>
+            <div class="field"><label for="customer-name">Nome <span class="required-indicator" aria-hidden="true">*</span></label><input id="customer-name" name="name" autocomplete="name" maxlength="80" required /><p class="field-error" id="name-error"></p></div>
+            <div class="field"><label for="customer-class">Turma <span class="required-indicator" aria-hidden="true">*</span></label><input id="customer-class" name="class" maxlength="40" required /><p class="field-error" id="class-error"></p></div>
             <fieldset class="field fieldset"><legend>Forma de recebimento <span aria-hidden="true">*</span></legend><label class="radio-option"><input type="radio" name="pickup" value="Retirada no ponto de venda da escola" required /><span class="radio-custom" aria-hidden="true"></span><span>Retirada no ponto de venda da escola</span></label><label class="radio-option"><input type="radio" name="pickup" value="Entrega dentro da escola" /><span class="radio-custom" aria-hidden="true"></span><span>Entrega na sala/local escolhido pelo comprador</span></label><p class="field-error" id="pickup-error"></p></fieldset>
-            <div class="field"><label for="customer-notes">Observações <span class="optional">opcional</span></label><textarea id="customer-notes" name="notes" rows="3" maxlength="300"></textarea></div>
+            <div class="field"><label for="customer-notes">Observações <span class="optional" id="notes-optional">opcional</span><span class="required-indicator" id="notes-required" aria-hidden="true" hidden>obrigatório (coloque a turma que deve ser entregado o pedido)</span></label><textarea id="customer-notes" name="notes" rows="3" maxlength="300"></textarea><p class="field-error" id="notes-error"></p></div>
             <p class="form-hint">O pagamento será combinado diretamente pelo WhatsApp via PIX.</p>
           </form>
         </div>

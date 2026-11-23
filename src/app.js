@@ -71,6 +71,10 @@ const cartCount = $('#cart-count');
 const announcer = $('#announcer');
 const form = $('#checkout-form');
 const checkout = $('#checkout');
+const notesField = $('#customer-notes');
+const notesError = $('#notes-error');
+const notesOptionalLabel = $('#notes-optional');
+const notesRequiredLabel = $('#notes-required');
 const checkoutButton = $('#checkout-button');
 const backToCartButton = $('#back-to-cart');
 let cart = loadCart();
@@ -129,11 +133,34 @@ function persistCheckout() {
 function restoreCheckout() {
   $('#customer-name').value = typeof checkoutData.name === 'string' ? checkoutData.name : '';
   $('#customer-class').value = typeof checkoutData.class === 'string' ? checkoutData.class : '';
-  $('#customer-notes').value = typeof checkoutData.notes === 'string' ? checkoutData.notes : '';
+  notesField.value = typeof checkoutData.notes === 'string' ? checkoutData.notes : '';
   if (typeof checkoutData.pickup === 'string') {
     const radio = [...form.elements.pickup].find((input) => input.value === checkoutData.pickup);
     if (radio) radio.checked = true;
   }
+  updateNotesRequirement();
+  resizeNotesField();
+}
+
+function updateNotesRequirement() {
+  const isRequired = form.elements.pickup.value === 'Entrega dentro da escola';
+  notesField.required = isRequired;
+  notesField.setAttribute('aria-required', String(isRequired));
+  notesOptionalLabel.hidden = isRequired;
+  notesRequiredLabel.hidden = !isRequired;
+  if (!isRequired || notesField.value.trim()) {
+    notesError.textContent = '';
+    notesField.removeAttribute('aria-invalid');
+    notesField.removeAttribute('aria-describedby');
+  }
+  return isRequired;
+}
+
+function resizeNotesField() {
+  notesField.style.height = 'auto';
+  const fieldStyle = getComputedStyle(notesField);
+  const borderHeight = Number.parseFloat(fieldStyle.borderTopWidth) + Number.parseFloat(fieldStyle.borderBottomWidth);
+  notesField.style.height = `${notesField.scrollHeight + borderHeight}px`;
 }
 
 function makeElement(tag, className, text) {
@@ -385,10 +412,20 @@ function addProduct(id) {
 
 function makeCartLine(product, quantity) {
   const row = makeElement('article', 'cart-line');
+  const imageFrame = makeElement('div', 'cart-line-image-frame');
+  const image = makeElement('img', 'cart-line-image');
+  image.src = product.image;
+  image.alt = '';
+  image.setAttribute('aria-hidden', 'true');
+  image.loading = 'lazy';
+  image.decoding = 'async';
+  imageFrame.append(image);
   const main = makeElement('div', 'cart-line-main');
   main.append(makeElement('h3', '', product.name), makeElement('p', '', `${formatPrice(product.priceCents)} cada`));
   const price = makeElement('span', 'cart-line-price', formatPrice(product.priceCents * quantity));
   price.setAttribute('aria-label', `Subtotal: ${formatPrice(product.priceCents * quantity)}`);
+  const details = makeElement('div', 'cart-line-details');
+  details.append(main, price);
   const controls = makeElement('div', 'cart-line-controls');
   const quantityControl = makeElement('div', 'quantity-control');
   quantityControl.setAttribute('aria-label', `Quantidade de ${product.name}`);
@@ -408,7 +445,7 @@ function makeCartLine(product, quantity) {
   remove.setAttribute('aria-label', `Remover ${product.name} da sacola`);
   remove.addEventListener('click', () => removeProduct(product.id));
   controls.append(quantityControl, remove);
-  row.append(main, price, controls);
+  row.append(imageFrame, details, controls);
   return row;
 }
 
@@ -598,16 +635,18 @@ function validateCheckout() {
   }
   const name = $('#customer-name');
   const customerClass = $('#customer-class');
+  const notesAreRequired = updateNotesRequirement();
   const pickup = form.elements.pickup;
   const selectedPickup = [...pickup].find((input) => input.checked);
   const errors = [];
   const nameError = $('#name-error');
   const classError = $('#class-error');
   const pickupError = $('#pickup-error');
-  [name, customerClass, ...pickup].forEach((field) => field.removeAttribute('aria-invalid'));
+  [name, customerClass, notesField, ...pickup].forEach((field) => field.removeAttribute('aria-invalid'));
   nameError.textContent = '';
   classError.textContent = '';
   pickupError.textContent = '';
+  notesError.textContent = '';
   if (!name.value.trim()) {
     nameError.textContent = 'Informe seu nome.';
     name.setAttribute('aria-invalid', 'true');
@@ -628,6 +667,12 @@ function validateCheckout() {
   } else {
     [...pickup].forEach((input) => { input.removeAttribute('aria-invalid'); input.removeAttribute('aria-describedby'); });
   }
+  if (notesAreRequired && !notesField.value.trim()) {
+    notesError.textContent = 'Informe o local escolhido para a entrega nas observações.';
+    notesField.setAttribute('aria-invalid', 'true');
+    notesField.setAttribute('aria-describedby', 'notes-error');
+    errors.push(notesField);
+  } else notesField.removeAttribute('aria-describedby');
   const validCart = cart.length > 0 && cart.every((line) => {
     const product = productById.get(line.id);
     return product && Number.isSafeInteger(line.quantity) && line.quantity > 0 && Number.isInteger(product.priceCents) && product.priceCents >= 0;
@@ -742,8 +787,21 @@ checkoutButton.addEventListener('click', () => {
   else prepareWhatsAppOrder();
 });
 backToCartButton.addEventListener('click', () => setCheckoutVisible(false));
-form.addEventListener('input', persistCheckout);
-form.addEventListener('change', persistCheckout);
+form.addEventListener('input', (event) => {
+  if (event.target === notesField) {
+    resizeNotesField();
+    if (notesField.value.trim()) {
+      notesError.textContent = '';
+      notesField.removeAttribute('aria-invalid');
+      notesField.removeAttribute('aria-describedby');
+    }
+  }
+  persistCheckout();
+});
+form.addEventListener('change', (event) => {
+  if (event.target.name === 'pickup') updateNotesRequirement();
+  persistCheckout();
+});
 form.addEventListener('submit', (event) => { event.preventDefault(); prepareWhatsAppOrder(); });
 form.addEventListener('keydown', (event) => {
   if (event.key === 'Enter' && event.target.tagName !== 'TEXTAREA' && checkoutVisible) {

@@ -181,12 +181,15 @@ h1, h2, h3, p { margin-top: 0; }
 .empty-cart-logo { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; border-radius: 50%; }
 .empty-cart h3 { margin: 0 0 7px; font-family: var(--serif); font-size: 21px; font-weight: 500; }
 .empty-cart p { margin: 0; color: var(--muted); font-size: 11px; }
-.cart-line { display: grid; grid-template-columns: 1fr auto; gap: 13px; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.cart-line { display: grid; grid-template-columns: 80px minmax(0,1fr); grid-template-rows: auto auto; column-gap: 13px; row-gap: 6px; align-items: stretch; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.cart-line-image-frame { grid-column: 1; grid-row: 1 / span 2; align-self: center; display: block; width: 80px; height: 80px; aspect-ratio: 1 / 1; overflow: hidden; border: 1px solid var(--line); border-radius: 4px; background: var(--cream); }
+.cart-line-image { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.cart-line-details { grid-column: 2; grid-row: 1; min-width: 0; display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
 .cart-line-main { min-width: 0; }
 .cart-line-main h3 { margin: 0 0 5px; font-size: 12px; font-weight: 600; }
 .cart-line-main p { margin: 0; color: var(--muted); font-size: 10px; }
 .cart-line-price { align-self: start; padding-top: 2px; color: var(--red); font-size: 11px; font-weight: 700; white-space: nowrap; }
-.cart-line-controls { grid-column: 1 / 3; display: flex; justify-content: space-between; align-items: center; margin-top: -6px; }
+.cart-line-controls { grid-column: 2; grid-row: 2; display: flex; justify-content: space-between; align-items: center; margin-top: 0; }
 .quantity-control { display: inline-flex; align-items: center; border: 1px solid var(--line); border-radius: 3px; overflow: hidden; }
 .quantity-control button { width: 30px; height: 28px; border: 0; border-radius: 0; background: transparent; color: var(--ink); cursor: pointer; }
 .quantity-control button:hover { color: var(--red); background: #fff2ef; }
@@ -201,9 +204,10 @@ h1, h2, h3, p { margin-top: 0; }
 .checkout-heading h3 { margin: 0; font-family: var(--serif); font-size: 22px; font-weight: 500; }
 .field { margin-bottom: 15px; }
 .field label, .field legend { display: block; margin-bottom: 6px; font-size: 10px; font-weight: 600; }
-.field label > span:first-child, .field legend > span { color: var(--red); }
-.field input:not([type=radio]), .field textarea { display: block; width: 100%; min-height: 42px; padding: 10px 11px; border: 1px solid #dcd1cc; border-radius: 0; background: #fff; color: var(--ink); font-size: 12px; transition: border-color .18s ease, background-color .18s ease, box-shadow .18s ease, outline-color .18s ease, outline-offset .18s ease; }
-.field textarea { resize: vertical; }
+.field label > .required-indicator, .field legend > span { color: var(--red); }
+.field input:not([type=radio]), .field textarea { display: block; width: 100%; min-height: 42px; padding: 10px 11px; border: 1px solid #dcd1cc; border-radius: 0; background: #fff; color: var(--ink); font-size: 12px; transition: border-width .18s ease, border-color .18s ease, background-color .18s ease, box-shadow .18s ease; }
+.field input:not([type=radio]):focus, .field textarea:focus { border: 2px solid var(--red); outline: none; background-color: #fff; box-shadow: none; }
+.field textarea { resize: none; overflow-y: hidden; }
 .field input:hover, .field textarea:hover { border-color: #aa9991; }
 .field input[aria-invalid="true"], .field textarea[aria-invalid="true"] { border-color: var(--red); }
 .field-error { max-height: 0; min-height: 0; overflow: hidden; margin: 0; color: #ae1029; font-size: 10px; line-height: 1.4; opacity: 0; transform: translateY(-2px); transition: max-height .18s ease, margin .18s ease, opacity .18s ease, transform .18s ease; }
