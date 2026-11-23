@@ -90,6 +90,8 @@ let backdropTimer = 0;
 let drawerOpenFrame = 0;
 let drawerFocusFrame = 0;
 let drawerTransitionToken = 0;
+let checkoutTransitionTimer = 0;
+let checkoutTransitionToken = 0;
 
 function formatPrice(cents) {
   return money.format((Number.isInteger(cents) && cents >= 0 ? cents : 0) / 100);
@@ -415,6 +417,7 @@ function renderCart() {
   persistCart();
   cartItemsRoot.replaceChildren();
   if (!cart.length) {
+    setCheckoutVisible(false);
     const empty = makeElement('div', 'empty-cart');
     const mark = makeElement('div', 'empty-cart-mark');
     const logo = makeElement('img', 'empty-cart-logo');
@@ -423,9 +426,6 @@ function renderCart() {
     mark.append(logo);
     empty.append(mark, makeElement('h3', '', 'Sua sacola está vazia'), makeElement('p', '', 'Escolha alguns doces para começar.'));
     cartItemsRoot.append(empty);
-    checkoutVisible = false;
-    checkout.hidden = true;
-    backToCartButton.hidden = true;
     checkoutButton.replaceChildren(document.createTextNode('Escolher meus doces'));
   } else {
     cart.forEach((line) => {
@@ -516,7 +516,24 @@ function closeDrawer() {
 
 function setCheckoutVisible(visible) {
   checkoutVisible = visible;
-  checkout.hidden = !visible;
+  const transitionToken = ++checkoutTransitionToken;
+  window.clearTimeout(checkoutTransitionTimer);
+  checkoutTransitionTimer = 0;
+  if (visible) {
+    checkout.hidden = false;
+    requestAnimationFrame(() => {
+      if (transitionToken === checkoutTransitionToken && checkoutVisible) checkout.classList.add('is-visible');
+    });
+  } else {
+    checkout.classList.remove('is-visible');
+    if (!checkout.hidden) {
+      checkoutTransitionTimer = window.setTimeout(() => {
+        if (transitionToken !== checkoutTransitionToken || checkoutVisible) return;
+        checkout.hidden = true;
+        checkoutTransitionTimer = 0;
+      }, 260);
+    }
+  }
   backToCartButton.hidden = !visible;
   $('#drawer-status').textContent = '';
   if (visible) {
@@ -585,36 +602,29 @@ function validateCheckout() {
 
 function buildOrderMessage() {
   const subtotalProducts = cartTotal();
+  const notes = $('#customer-notes').value.trim();
   const lines = [
     'Olá! Gostaria de realizar um pedido da Bem Adocicado.',
     '',
     '*MEU PEDIDO*',
     '',
-    '*Produtos e Combos:*',
-    '',
   ];
   cart.forEach((line) => {
     const product = productById.get(line.id);
-    const itemSubtotal = product.priceCents * line.quantity;
     lines.push(
       `${line.quantity}x ${product.name}`,
       `Valor unitário: ${formatPrice(product.priceCents)}`,
-      `Subtotal: ${formatPrice(itemSubtotal)}`,
       '',
     );
   });
   lines.push(
     '*DETALHES DO PEDIDO*',
+    '',
     `Nome: ${$('#customer-name').value.trim()}`,
     `Turma: ${$('#customer-class').value.trim()}`,
     `Tipo de entrega: ${form.elements.pickup.value}`,
-  );
-  const notes = $('#customer-notes').value.trim();
-  if (notes) lines.push(`Observações: ${notes}`);
-  lines.push(
+    `Observações:${notes ? ` ${notes}` : ''}`,
     '',
-    '*RESUMO FINANCEIRO*',
-    `Subtotal dos produtos: ${formatPrice(subtotalProducts)}`,
     `*TOTAL DO PEDIDO: ${formatPrice(subtotalProducts)}*`,
     '',
     'Aguardo a confirmação do pedido. Obrigado!',
