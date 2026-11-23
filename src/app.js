@@ -4,7 +4,7 @@ const CONFIG = {
   checkoutKey: 'bem-adocicado-checkout-v1',
 };
 
-const HERO_AUTOPLAY_DELAY = 5000;
+const HERO_AUTOPLAY_DELAY = 10000;
 
 // Fotos ilustrativas provisórias. Substitua as URLs quando as imagens oficiais estiverem disponíveis.
 const CATALOG_IMAGES = {
@@ -81,10 +81,10 @@ let heroSlides = [];
 let heroIndicators = [];
 let activeHeroBanner = 0;
 let heroAutoplayTimer = null;
+let heroAutoplayDeadline = null;
+let heroAutoplayRemaining = HERO_AUTOPLAY_DELAY;
+let heroAutoplayPausedByHover = false;
 let heroPointerStart = null;
-let heroKeyboardFocus = false;
-let reducedMotionPreference = null;
-let hoverPreference = null;
 let returnFocusTo = null;
 let backdropTimer = 0;
 let drawerOpenFrame = 0;
@@ -167,18 +167,27 @@ function stopHeroAutoplay() {
   if (heroAutoplayTimer === null) return;
   window.clearTimeout(heroAutoplayTimer);
   heroAutoplayTimer = null;
+  if (heroAutoplayDeadline !== null) {
+    heroAutoplayRemaining = Math.max(0, heroAutoplayDeadline - Date.now());
+    heroAutoplayDeadline = null;
+  }
 }
 
-function scheduleHeroAutoplay() {
+function scheduleHeroAutoplay(resetCountdown = false) {
   stopHeroAutoplay();
-  if (!heroCarousel || !reducedMotionPreference || reducedMotionPreference.matches) return;
-  if ((hoverPreference?.matches && heroCarousel.matches(':hover')) || heroKeyboardFocus) return;
+  if (resetCountdown) heroAutoplayRemaining = HERO_AUTOPLAY_DELAY;
+  if (!heroCarousel || !heroSlides.length || heroAutoplayPausedByHover || heroPointerStart) return;
 
+  const delay = heroAutoplayRemaining > 0 ? heroAutoplayRemaining : HERO_AUTOPLAY_DELAY;
+  heroAutoplayRemaining = delay;
+  heroAutoplayDeadline = Date.now() + delay;
   heroAutoplayTimer = window.setTimeout(() => {
     heroAutoplayTimer = null;
+    heroAutoplayDeadline = null;
+    heroAutoplayRemaining = HERO_AUTOPLAY_DELAY;
     setHeroBanner(activeHeroBanner + 1, 1);
     scheduleHeroAutoplay();
-  }, HERO_AUTOPLAY_DELAY);
+  }, delay);
 }
 
 function loadHeroBannerImage(banner, slide, placeholder) {
@@ -224,7 +233,7 @@ function initializeHeroCarousel() {
     if (index === 0) indicator.setAttribute('aria-current', 'true');
     indicator.addEventListener('click', () => {
       setHeroBanner(index, index < activeHeroBanner ? -1 : 1);
-      scheduleHeroAutoplay();
+      scheduleHeroAutoplay(true);
     });
     indicatorsRoot.append(indicator);
     heroIndicators.push(indicator);
@@ -232,21 +241,18 @@ function initializeHeroCarousel() {
 
   $('.hero-carousel-control--previous', heroCarousel).addEventListener('click', () => {
     setHeroBanner(activeHeroBanner - 1, -1);
-    scheduleHeroAutoplay();
+    scheduleHeroAutoplay(true);
   });
   $('.hero-carousel-control--next', heroCarousel).addEventListener('click', () => {
     setHeroBanner(activeHeroBanner + 1, 1);
-    scheduleHeroAutoplay();
+    scheduleHeroAutoplay(true);
   });
-  heroCarousel.addEventListener('mouseenter', stopHeroAutoplay);
-  heroCarousel.addEventListener('mouseleave', scheduleHeroAutoplay);
-  heroCarousel.addEventListener('focusin', (event) => {
-    heroKeyboardFocus = event.target.matches(':focus-visible');
-    if (heroKeyboardFocus) stopHeroAutoplay();
-    else scheduleHeroAutoplay();
+  heroCarousel.addEventListener('mouseenter', () => {
+    heroAutoplayPausedByHover = true;
+    stopHeroAutoplay();
   });
-  heroCarousel.addEventListener('focusout', (event) => {
-    heroKeyboardFocus = Boolean(event.relatedTarget && heroCarousel.contains(event.relatedTarget) && event.relatedTarget.matches(':focus-visible'));
+  heroCarousel.addEventListener('mouseleave', () => {
+    heroAutoplayPausedByHover = false;
     scheduleHeroAutoplay();
   });
   heroCarousel.addEventListener('keydown', (event) => {
@@ -254,24 +260,23 @@ function initializeHeroCarousel() {
     if (event.key === 'ArrowLeft') {
       event.preventDefault();
       setHeroBanner(activeHeroBanner - 1, -1);
-      scheduleHeroAutoplay();
+      scheduleHeroAutoplay(true);
     } else if (event.key === 'ArrowRight') {
       event.preventDefault();
       setHeroBanner(activeHeroBanner + 1, 1);
-      scheduleHeroAutoplay();
+      scheduleHeroAutoplay(true);
     } else if (event.key === 'Home') {
       event.preventDefault();
       setHeroBanner(0, -1);
-      scheduleHeroAutoplay();
+      scheduleHeroAutoplay(true);
     } else if (event.key === 'End') {
       event.preventDefault();
       setHeroBanner(heroSlides.length - 1, 1);
-      scheduleHeroAutoplay();
+      scheduleHeroAutoplay(true);
     }
   });
 
   heroCarousel.addEventListener('pointerdown', (event) => {
-    heroKeyboardFocus = false;
     stopHeroAutoplay();
     if (event.button !== 0 || event.target.closest('button')) return;
     heroPointerStart = { pointerId: event.pointerId, x: event.clientX, y: event.clientY };
@@ -291,10 +296,11 @@ function initializeHeroCarousel() {
     heroPointerStart = null;
     heroCarousel.classList.remove('is-dragging');
     if (heroCarousel.hasPointerCapture(event.pointerId)) heroCarousel.releasePointerCapture(event.pointerId);
-    if (Math.abs(deltaX) >= threshold && Math.abs(deltaX) > Math.abs(deltaY) * 1.2) {
+    const changedBySwipe = Math.abs(deltaX) >= threshold && Math.abs(deltaX) > Math.abs(deltaY) * 1.2;
+    if (changedBySwipe) {
       setHeroBanner(activeHeroBanner + (deltaX < 0 ? 1 : -1), deltaX < 0 ? 1 : -1);
     }
-    scheduleHeroAutoplay();
+    scheduleHeroAutoplay(changedBySwipe);
   });
   heroCarousel.addEventListener('pointercancel', () => {
     heroPointerStart = null;
@@ -302,14 +308,6 @@ function initializeHeroCarousel() {
     scheduleHeroAutoplay();
   });
 
-  reducedMotionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
-  hoverPreference = window.matchMedia('(hover: hover)');
-  const handleMotionPreference = () => {
-    if (reducedMotionPreference.matches) stopHeroAutoplay();
-    else scheduleHeroAutoplay();
-  };
-  if (reducedMotionPreference.addEventListener) reducedMotionPreference.addEventListener('change', handleMotionPreference);
-  else reducedMotionPreference.addListener(handleMotionPreference);
   scheduleHeroAutoplay();
 }
 
