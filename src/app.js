@@ -514,6 +514,35 @@ function closeDrawer() {
   if (returnFocusTo instanceof HTMLElement) returnFocusTo.focus();
 }
 
+function checkoutTransitionDurationMs() {
+  const duration = getComputedStyle(checkout).getPropertyValue('--checkout-transition-duration').trim();
+  const value = Number.parseFloat(duration);
+  if (!Number.isFinite(value)) return 280;
+  return duration.endsWith('ms') ? value : value * 1000;
+}
+
+function finishCheckoutTransition(transitionToken, visible, force = false) {
+  if (transitionToken !== checkoutTransitionToken) return;
+  const targetHeight = Number.parseFloat(checkout.style.height);
+  const currentHeight = checkout.getBoundingClientRect().height;
+  if (!force && Number.isFinite(targetHeight) && Math.abs(currentHeight - targetHeight) > 1) return;
+
+  window.clearTimeout(checkoutTransitionTimer);
+  checkoutTransitionTimer = 0;
+  if (visible && checkout.classList.contains('is-visible')) {
+    checkout.style.height = 'auto';
+  } else if (!visible && !checkout.classList.contains('is-visible')) {
+    checkout.hidden = true;
+    checkout.style.height = '0px';
+  }
+}
+
+checkout.addEventListener('transitionend', (event) => {
+  if (event.target === checkout && event.propertyName === 'height') {
+    finishCheckoutTransition(checkoutTransitionToken, checkoutVisible);
+  }
+});
+
 function setCheckoutVisible(visible) {
   checkoutVisible = visible;
   const transitionToken = ++checkoutTransitionToken;
@@ -521,18 +550,32 @@ function setCheckoutVisible(visible) {
   checkoutTransitionTimer = 0;
   if (visible) {
     checkout.hidden = false;
-    requestAnimationFrame(() => {
-      if (transitionToken === checkoutTransitionToken && checkoutVisible) checkout.classList.add('is-visible');
-    });
+    const startHeight = checkout.getBoundingClientRect().height;
+    checkout.style.height = `${startHeight}px`;
+    void checkout.offsetHeight;
+    checkout.classList.add('is-visible');
+    checkout.style.height = 'auto';
+    const targetHeight = checkout.getBoundingClientRect().height;
+    checkout.style.height = `${startHeight}px`;
+    void checkout.offsetHeight;
+    checkout.style.height = `${targetHeight}px`;
   } else {
-    checkout.classList.remove('is-visible');
     if (!checkout.hidden) {
-      checkoutTransitionTimer = window.setTimeout(() => {
-        if (transitionToken !== checkoutTransitionToken || checkoutVisible) return;
-        checkout.hidden = true;
-        checkoutTransitionTimer = 0;
-      }, 260);
+      const startHeight = checkout.getBoundingClientRect().height;
+      checkout.style.height = `${startHeight}px`;
+      void checkout.offsetHeight;
+      checkout.classList.remove('is-visible');
+      checkout.style.height = '0px';
+    } else {
+      checkout.classList.remove('is-visible');
+      checkout.style.height = '0px';
     }
+  }
+  if (!checkout.hidden || visible) {
+    checkoutTransitionTimer = window.setTimeout(
+      () => finishCheckoutTransition(transitionToken, visible, true),
+      checkoutTransitionDurationMs() + 80,
+    );
   }
   backToCartButton.hidden = !visible;
   $('#drawer-status').textContent = '';

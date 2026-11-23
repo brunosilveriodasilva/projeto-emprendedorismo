@@ -15,6 +15,7 @@
   --button-font-family: var(--sans);
   --button-font-size: 14px;
   --button-font-weight: 700;
+  --checkout-transition-duration: 280ms;
   --header-height: 82px;
 }
 
@@ -192,8 +193,8 @@ h1, h2, h3, p { margin-top: 0; }
 .quantity-control output { min-width: 23px; text-align: center; font-size: 10px; font-weight: 600; }
 .remove-item { padding: 5px 0; border: 0; background: transparent; color: #887e79; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 .remove-item:hover { color: var(--red); }
-.checkout { padding-top: 24px; border-top: 1px solid var(--line); opacity: 0; transform: translateY(8px); visibility: hidden; transition: opacity .24s ease, transform .24s ease, visibility 0s linear .24s; }
-.checkout.is-visible { opacity: 1; transform: translateY(0); visibility: visible; transition-delay: 0s; }
+.checkout { height: 0; overflow: hidden; padding-top: 0; border-top: 0 solid var(--line); opacity: 0; transform: translateY(8px); visibility: hidden; transition: height var(--checkout-transition-duration) ease, padding-top var(--checkout-transition-duration) ease, border-top-width var(--checkout-transition-duration) ease, opacity .24s ease, transform .24s ease, visibility 0s linear var(--checkout-transition-duration); }
+.checkout.is-visible { padding-top: 24px; border-top-width: 1px; opacity: 1; transform: translateY(0); visibility: visible; transition-delay: 0s; }
 .checkout-heading { display: flex; align-items: center; gap: 12px; margin-bottom: 17px; }
 .step-number { color: #b5aaa5; font-size: 10px; letter-spacing: .1em; }
 .checkout-heading .eyebrow { margin-bottom: 3px; font-size: 8px; }
@@ -343,7 +344,11 @@ h1, h2, h3, p { margin-top: 0; }
   .hero-carousel-dot, .hero-carousel-dot::before { transition-duration: .22s !important; }
   .hero-carousel-dot[aria-current="true"]::before, .hero-carousel-dot:active:not(:disabled) { transform: none !important; }
   .hero-carousel:hover .hero-carousel-slide.is-active .hero-banner-image { transform: none !important; }
-  .checkout, .field input:not([type=radio]), .field textarea, .field-error, .radio-custom { transition-duration: .01ms !important; }
+  :root { --checkout-transition-duration: 180ms; }
+  .checkout { transform: none; transition-property: height, padding-top, border-top-width, opacity, visibility; }
+  .checkout.is-visible { transform: none; }
+  .field input:not([type=radio)], .field textarea, .field-error, .radio-custom { transition-duration: .18s !important; }
+  .field-error, .field-error:not(:empty) { transform: none; }
 }
 
 button, .button, .product-add, .product-add span:last-child, .text-link, .whatsapp-contact-button, .cart-trigger, .icon-button, .drawer-close, .quantity-control button, .remove-item, .cart-label, .order-note-actions > a {
