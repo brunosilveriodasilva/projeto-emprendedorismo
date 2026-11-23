@@ -46,13 +46,13 @@ const CATEGORIES = [
   },
   {
     id: 'combos', title: 'Combos promocionais', index: '04', products: [
-      { id: 'combo-namorados-romantico', name: 'Combo Romântico', priceCents: 1200, image: CATALOG_IMAGES.namorados },
-      { id: 'combo-trio-de-amigos', name: 'Combo Trio de Amigos', priceCents: 1800, image: CATALOG_IMAGES.trio },
-      { id: 'combo-duo-dupla', name: 'Combo Duo', priceCents: 600, image: CATALOG_IMAGES.duo },
-      { id: 'combo-loucos-por-chocolate', name: 'Combo Loucos por Chocolate', priceCents: 1100, image: CATALOG_IMAGES.loucos },
-      { id: 'combo-galera-grupo', name: 'Combo Galera', priceCents: 1300, image: CATALOG_IMAGES.galera },
-      { id: 'combo-pequena-pausa-lanchinho', name: 'Combo Pequena Pausa', priceCents: 500, image: CATALOG_IMAGES.pausa },
-      { id: 'combo-degustacao-total', name: 'Combo Degustação Total', priceCents: 1100, image: CATALOG_IMAGES.degustacao },
+      { id: 'combo-namorados-romantico', name: 'Combo 2 Brownies + 2 Brigadeiros', priceCents: 1200, image: CATALOG_IMAGES.namorados },
+      { id: 'combo-trio-de-amigos', name: 'Combo 3 Brownies + 3 Brigadeiros', priceCents: 1800, image: CATALOG_IMAGES.trio },
+      { id: 'combo-duo-dupla', name: 'Combo 1 Brownie + 1 Brigadeiro', priceCents: 600, image: CATALOG_IMAGES.duo },
+      { id: 'combo-loucos-por-chocolate', name: 'Combo 1 Brownie + 2 Brigadeiros + 1 Bombom Ouro Branco', priceCents: 1100, image: CATALOG_IMAGES.loucos },
+      { id: 'combo-galera-grupo', name: 'Combo 4 Brigadeiros + 2 Bombons Ouro Branco', priceCents: 1300, image: CATALOG_IMAGES.galera },
+      { id: 'combo-pequena-pausa-lanchinho', name: 'Combo 1 Brigadeiro + 1 Bombom Ouro Branco', priceCents: 500, image: CATALOG_IMAGES.pausa },
+      { id: 'combo-degustacao-total', name: 'Combo 1 Brownie + 1 Brigadeiro Tradicional + 1 Brigadeiro de Leite Ninho + 1 Bombom Ouro Branco', priceCents: 1100, image: CATALOG_IMAGES.degustacao },
     ],
   },
 ];
@@ -77,6 +77,8 @@ const notesOptionalLabel = $('#notes-optional');
 const notesRequiredLabel = $('#notes-required');
 const checkoutButton = $('#checkout-button');
 const backToCartButton = $('#back-to-cart');
+const teamContactLink = $('.whatsapp-contact-button');
+teamContactLink.href = `https://wa.me/${CONFIG.whatsappNumber}`;
 let cart = loadCart();
 let checkoutData = loadCheckoutData();
 let checkoutVisible = false;
@@ -765,17 +767,6 @@ renderCart();
 restoreCheckout();
 
 cartTrigger.addEventListener('click', () => openDrawer(cartTrigger));
-$('[data-start-order]').addEventListener('click', (event) => {
-  event.preventDefault();
-  const hasItems = cart.length > 0;
-  openDrawer(event.currentTarget);
-  if (hasItems) setCheckoutVisible(true);
-  else {
-    const message = 'Adicione produtos ao carrinho antes de falar com a equipe sobre o pedido.';
-    $('#drawer-status').textContent = message;
-    announcer.textContent = message;
-  }
-});
 $('.drawer-close').addEventListener('click', closeDrawer);
 $('#continue-shopping').addEventListener('click', closeDrawer);
 backdrop.addEventListener('click', closeDrawer);
