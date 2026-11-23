@@ -46,13 +46,13 @@ const CATEGORIES = [
   },
   {
     id: 'combos', title: 'Combos promocionais', index: '04', products: [
-      { id: 'combo-namorados-romantico', name: 'Combo 2 Brownies + 2 Brigadeiros', priceCents: 1200, image: CATALOG_IMAGES.namorados },
-      { id: 'combo-trio-de-amigos', name: 'Combo 3 Brownies + 3 Brigadeiros', priceCents: 1800, image: CATALOG_IMAGES.trio },
-      { id: 'combo-duo-dupla', name: 'Combo 1 Brownie + 1 Brigadeiro', priceCents: 600, image: CATALOG_IMAGES.duo },
-      { id: 'combo-loucos-por-chocolate', name: 'Combo 1 Brownie + 2 Brigadeiros + 1 Bombom Ouro Branco', priceCents: 1100, image: CATALOG_IMAGES.loucos },
-      { id: 'combo-galera-grupo', name: 'Combo 4 Brigadeiros + 2 Bombons Ouro Branco', priceCents: 1300, image: CATALOG_IMAGES.galera },
-      { id: 'combo-pequena-pausa-lanchinho', name: 'Combo 1 Brigadeiro + 1 Bombom Ouro Branco', priceCents: 500, image: CATALOG_IMAGES.pausa },
-      { id: 'combo-degustacao-total', name: 'Combo 1 Brownie + 1 Brigadeiro Tradicional + 1 Brigadeiro de Leite Ninho + 1 Bombom Ouro Branco', priceCents: 1100, image: CATALOG_IMAGES.degustacao },
+      { id: 'combo-namorados-romantico', name: 'Combo 2 Brownies + 2 Brigadeiros', priceCents: 1200, originalPriceCents: 1400, image: CATALOG_IMAGES.namorados },
+      { id: 'combo-trio-de-amigos', name: 'Combo 3 Brownies + 3 Brigadeiros', priceCents: 1800, originalPriceCents: 2100, image: CATALOG_IMAGES.trio },
+      { id: 'combo-duo-dupla', name: 'Combo 1 Brownie + 1 Brigadeiro', priceCents: 600, originalPriceCents: 700, image: CATALOG_IMAGES.duo },
+      { id: 'combo-loucos-por-chocolate', name: 'Combo 1 Brownie + 2 Brigadeiros + 1 Bombom Ouro Branco', priceCents: 1100, originalPriceCents: 1250, image: CATALOG_IMAGES.loucos },
+      { id: 'combo-galera-grupo', name: 'Combo 4 Brigadeiros + 2 Bombons Ouro Branco', priceCents: 1300, originalPriceCents: 1500, image: CATALOG_IMAGES.galera },
+      { id: 'combo-pequena-pausa-lanchinho', name: 'Combo 1 Brigadeiro + 1 Bombom Ouro Branco', priceCents: 500, originalPriceCents: 550, image: CATALOG_IMAGES.pausa },
+      { id: 'combo-degustacao-total', name: 'Combo 1 Brownie + 1 Brigadeiro Tradicional + 1 Brigadeiro de Leite Ninho + 1 Bombom Ouro Branco', priceCents: 1100, originalPriceCents: 1250, image: CATALOG_IMAGES.degustacao },
     ],
   },
 ];
@@ -101,6 +101,11 @@ let checkoutTransitionToken = 0;
 
 function formatPrice(cents) {
   return money.format((Number.isInteger(cents) && cents >= 0 ? cents : 0) / 100);
+}
+
+function discountPercentage(originalPriceCents, promotionalPriceCents) {
+  if (!Number.isInteger(originalPriceCents) || originalPriceCents <= promotionalPriceCents || promotionalPriceCents < 0) return 0;
+  return Math.round(((originalPriceCents - promotionalPriceCents) / originalPriceCents) * 100);
 }
 
 function safeRead(key, fallback) {
@@ -377,7 +382,19 @@ function makeProductCard(product) {
   }
   const info = makeElement('div', 'product-info');
   const meta = makeElement('div', 'product-meta');
-  meta.append(makeElement('h4', '', product.name), makeElement('span', 'product-price', formatPrice(product.priceCents)));
+  meta.append(makeElement('h4', '', product.name));
+  if (product.originalPriceCents > product.priceCents) {
+    const priceGroup = makeElement('div', 'product-price-group');
+    const promotionalRow = makeElement('div', 'product-price-promo-row');
+    promotionalRow.append(
+      makeElement('span', 'product-price product-price--promo', formatPrice(product.priceCents)),
+      makeElement('span', 'discount-badge', `${discountPercentage(product.originalPriceCents, product.priceCents)}% OFF`),
+    );
+    priceGroup.append(promotionalRow, makeElement('s', 'product-price-original', formatPrice(product.originalPriceCents)));
+    meta.append(priceGroup);
+  } else {
+    meta.append(makeElement('span', 'product-price', formatPrice(product.priceCents)));
+  }
   const addButton = makeElement('button', 'product-add');
   addButton.type = 'button';
   addButton.setAttribute('aria-label', `Adicionar ${product.name}, ${formatPrice(product.priceCents)}, ao carrinho`);
