@@ -62,14 +62,14 @@ h1, h2, h3, p { margin-top: 0; }
 .button:active { transform: translateY(0) scale(.97); }
 .button-primary { background: var(--red); color: #fff; }
 .button-primary:hover { background: var(--red-dark); box-shadow: 0 7px 16px rgba(200,16,46,.16); }
-.hero-visual { --hero-transition-duration: .56s; --hero-transition-easing: ease-in-out; position: relative; width: 100%; max-width: 660px; aspect-ratio: 1.25; justify-self: end; overflow: hidden; background: var(--beige); isolation: isolate; touch-action: pan-y; user-select: none; cursor: grab; }
+.hero-visual { --hero-transition-duration: .56s; --hero-transition-easing: ease-in-out; position: relative; width: 100%; max-width: 660px; aspect-ratio: 1.25; justify-self: end; overflow: hidden; background: transparent; isolation: isolate; touch-action: pan-y; user-select: none; cursor: grab; }
 .hero-carousel.is-dragging { cursor: grabbing; }
 .hero-carousel-slides, .hero-carousel-slide { position: absolute; inset: 0; }
 .hero-carousel-slide { display: grid; place-items: center; overflow: hidden; opacity: 0; visibility: hidden; transform: translateX(var(--carousel-offset, 0)); transition: opacity var(--hero-transition-duration) var(--hero-transition-easing), transform var(--hero-transition-duration) var(--hero-transition-easing), visibility 0s linear var(--hero-transition-duration); pointer-events: none; }
 .hero-carousel-slide.is-entering { opacity: 0; visibility: visible; transition-delay: 0s; }
 .hero-carousel-slide.is-active { z-index: 1; opacity: 1; visibility: visible; transform: translateX(0); transition-delay: 0s; pointer-events: auto; }
-.hero-banner-placeholder { position: absolute; inset: 0; display: grid; place-items: center; background: linear-gradient(145deg, #f8f1ee 0%, var(--beige) 100%); }
-.hero-banner-image { position: absolute; top: 9px; left: 9px; display: block; width: calc(100% - 18px); height: calc(100% - 18px); border: 1px solid rgba(200,16,46,.62); border-radius: 8px; object-fit: cover; box-shadow: 0 6px 16px rgba(25,25,25,.14); transform: scale(1); transition: transform .85s ease; }
+.hero-banner-placeholder { position: absolute; inset: 0; display: grid; place-items: center; background: transparent; }
+.hero-banner-image { position: absolute; top: 9px; left: 9px; display: block; width: calc(100% - 18px); height: calc(100% - 18px); border-radius: 8px; object-fit: cover; box-shadow: 0 4px 14px rgba(25,25,25,.12); transform: scale(1); transition: transform .85s ease; }
 .hero-carousel-control { position: absolute; z-index: 3; top: 50%; width: 36px; height: 36px; padding: 0; border: 1px solid rgba(0,0,0,.32); border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,.74); color: #000; box-shadow: 0 3px 10px rgba(0,0,0,.14); cursor: pointer; transform: translateY(-50%); transition: color var(--hero-transition-duration) var(--hero-transition-easing), background-color var(--hero-transition-duration) var(--hero-transition-easing), border-color var(--hero-transition-duration) var(--hero-transition-easing), box-shadow var(--hero-transition-duration) var(--hero-transition-easing), transform var(--hero-transition-duration) var(--hero-transition-easing); }
 .hero-carousel-control--previous { left: 16px; }
 .hero-carousel-control--next { right: 16px; }
@@ -79,7 +79,7 @@ h1, h2, h3, p { margin-top: 0; }
 .hero-carousel-indicators { position: absolute; z-index: 3; right: 0; bottom: 15px; left: 0; display: flex; justify-content: center; align-items: center; gap: 8px; }
 .hero-carousel-dot { width: 26px; height: 26px; padding: 0; border: 0; border-radius: 50%; display: grid; place-items: center; background: transparent; cursor: pointer; }
 .hero-carousel-dot::before { content: ''; width: 6px; height: 6px; border: 1px solid rgba(25,25,25,.55); border-radius: 50%; background: rgba(255,253,251,.72); transition: border-color var(--hero-transition-duration) var(--hero-transition-easing), background-color var(--hero-transition-duration) var(--hero-transition-easing), transform var(--hero-transition-duration) var(--hero-transition-easing); }
-.hero-carousel-dot[aria-current="true"]::before { border-color: var(--red-dark); background: var(--red-dark); transform: scale(1.12); }
+.hero-carousel-dot[aria-current="true"]::before { border-color: #85091f; background: #85091f; transform: scale(1.12); }
 .hero-carousel-dot:not([aria-current="true"]):hover:not(:disabled)::before { border-color: var(--red-dark); background: #fff; }
 .hero-carousel-dot:active:not(:disabled) { transform: scale(.94); }
 .hero-note { color: var(--muted); font-size: 10px; }
