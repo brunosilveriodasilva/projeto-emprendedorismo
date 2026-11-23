@@ -62,31 +62,29 @@ h1, h2, h3, p { margin-top: 0; }
 .button:active { transform: translateY(0) scale(.97); }
 .button-primary { background: var(--red); color: #fff; }
 .button-primary:hover { background: var(--red-dark); box-shadow: 0 7px 16px rgba(200,16,46,.16); }
-.hero-visual { position: relative; width: 100%; max-width: 660px; aspect-ratio: 1.25; justify-self: end; overflow: hidden; background: var(--beige); isolation: isolate; touch-action: pan-y; user-select: none; cursor: grab; }
+.hero-visual { --hero-transition-duration: .56s; --hero-transition-easing: ease-in-out; position: relative; width: 100%; max-width: 660px; aspect-ratio: 1.25; justify-self: end; overflow: hidden; background: var(--beige); isolation: isolate; touch-action: pan-y; user-select: none; cursor: grab; }
 .hero-carousel.is-dragging { cursor: grabbing; }
 .hero-carousel-slides, .hero-carousel-slide { position: absolute; inset: 0; }
-.hero-carousel-slide { display: grid; place-items: center; overflow: hidden; opacity: 0; visibility: hidden; transform: translateX(var(--carousel-offset, 0)); transition: opacity .56s ease-in-out, transform .56s ease-in-out, visibility 0s linear .56s; pointer-events: none; }
+.hero-carousel-slide { display: grid; place-items: center; overflow: hidden; opacity: 0; visibility: hidden; transform: translateX(var(--carousel-offset, 0)); transition: opacity var(--hero-transition-duration) var(--hero-transition-easing), transform var(--hero-transition-duration) var(--hero-transition-easing), visibility 0s linear var(--hero-transition-duration); pointer-events: none; }
 .hero-carousel-slide.is-entering { opacity: 0; visibility: visible; transition-delay: 0s; }
 .hero-carousel-slide.is-active { z-index: 1; opacity: 1; visibility: visible; transform: translateX(0); transition-delay: 0s; pointer-events: auto; }
 .hero-banner-placeholder { position: absolute; inset: 0; display: grid; place-items: center; background: linear-gradient(145deg, #f8f1ee 0%, var(--beige) 100%); }
-.hero-banner-placeholder-logo { display: block; width: min(62%, 360px); max-height: 82%; height: auto; object-fit: contain; transition: transform .85s ease; }
 .hero-banner-image { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; transform: scale(1); transition: transform .85s ease; }
-.hero-carousel-control { position: absolute; z-index: 3; top: 50%; width: 44px; height: 44px; padding: 0; border: 1px solid rgba(232,223,218,.9); border-radius: 50%; display: grid; place-items: center; background: rgba(255,253,251,.92); color: var(--ink); box-shadow: 0 3px 12px rgba(25,25,25,.09); cursor: pointer; transform: translateY(-50%); transition: color .2s ease, background-color .2s ease, border-color .2s ease, box-shadow .2s ease, transform .2s ease; }
+.hero-carousel-control { position: absolute; z-index: 3; top: 50%; width: 36px; height: 36px; padding: 0; border: 1px solid rgba(0,0,0,.32); border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.74); color: #000; box-shadow: 0 3px 10px rgba(0,0,0,.14); cursor: pointer; transform: translateY(-50%); transition: color var(--hero-transition-duration) var(--hero-transition-easing), background-color var(--hero-transition-duration) var(--hero-transition-easing), border-color var(--hero-transition-duration) var(--hero-transition-easing), box-shadow var(--hero-transition-duration) var(--hero-transition-easing), transform var(--hero-transition-duration) var(--hero-transition-easing); }
 .hero-carousel-control--previous { left: 16px; }
 .hero-carousel-control--next { right: 16px; }
-.hero-carousel-control svg { display: block; width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
-.hero-carousel-control:hover:not(:disabled) { border-color: var(--red); background: #fff; color: var(--red); box-shadow: 0 5px 14px rgba(25,25,25,.13); transform: translateY(calc(-50% - 2px)); }
+.hero-carousel-control svg { display: block; width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.hero-carousel-control:hover:not(:disabled) { border-color: rgba(0,0,0,.5); background: rgba(255,255,255,.9); color: #000; box-shadow: 0 5px 12px rgba(0,0,0,.2); transform: translateY(-50%); }
 .hero-carousel-control:active:not(:disabled) { transform: translateY(-50%) scale(.97); }
 .hero-carousel-indicators { position: absolute; z-index: 3; right: 0; bottom: 15px; left: 0; display: flex; justify-content: center; align-items: center; gap: 8px; }
 .hero-carousel-dot { width: 26px; height: 26px; padding: 0; border: 0; border-radius: 50%; display: grid; place-items: center; background: transparent; cursor: pointer; }
-.hero-carousel-dot::before { content: ''; width: 8px; height: 8px; border: 1px solid rgba(25,25,25,.55); border-radius: 50%; background: rgba(255,253,251,.72); transition: border-color .18s ease, background-color .18s ease, transform .18s ease; }
-.hero-carousel-dot[aria-current="true"]::before { border-color: var(--red); background: var(--red); transform: scale(1.12); }
-.hero-carousel-dot:hover:not(:disabled)::before { border-color: var(--red); background: #fff; }
+.hero-carousel-dot::before { content: ''; width: 8px; height: 8px; border: 1px solid rgba(25,25,25,.55); border-radius: 50%; background: rgba(255,253,251,.72); transition: border-color var(--hero-transition-duration) var(--hero-transition-easing), background-color var(--hero-transition-duration) var(--hero-transition-easing), transform var(--hero-transition-duration) var(--hero-transition-easing); }
+.hero-carousel-dot[aria-current="true"]::before { border-color: var(--red-dark); background: var(--red-dark); transform: scale(1.12); }
+.hero-carousel-dot:not([aria-current="true"]):hover:not(:disabled)::before { border-color: var(--red-dark); background: #fff; }
 .hero-carousel-dot:active:not(:disabled) { transform: scale(.94); }
 .hero-note { color: var(--muted); font-size: 10px; }
 @media (hover: hover) {
-  .hero-carousel:hover .hero-carousel-slide.is-active .hero-banner-image,
-  .hero-carousel:hover .hero-banner-placeholder-logo { transform: scale(1.045); }
+  .hero-carousel:hover .hero-carousel-slide.is-active .hero-banner-image { transform: scale(1.045); }
 }
 @media (hover: none) { .hero-carousel { cursor: default; } }
 
@@ -260,7 +258,7 @@ h1, h2, h3, p { margin-top: 0; }
   .button { min-height: 45px; padding: 0 15px; }
   .hero-note { font-size: 9px; }
   .hero-visual { width: 100%; max-width: none; aspect-ratio: 1; }
-  .hero-carousel-control { width: 40px; height: 40px; }
+  .hero-carousel-control { width: 34px; height: 34px; }
   .hero-carousel-control--previous { left: 10px; }
   .hero-carousel-control--next { right: 10px; }
   .hero-carousel-indicators { bottom: 12px; }
@@ -320,8 +318,14 @@ h1, h2, h3, p { margin-top: 0; }
   .menu-lines i { transition-duration: .01ms !important; }
   .order-note-actions { transition-duration: .01ms !important; }
   .order-note-actions > a { transition-property: color, background-color, border-color, box-shadow; transition-duration: .24s !important; }
-  .hero-carousel-slide, .hero-banner-image, .hero-banner-placeholder-logo, .hero-carousel-control, .hero-carousel-dot, .hero-carousel-dot::before { transition-duration: .01ms !important; }
-  .hero-carousel:hover .hero-carousel-slide.is-active .hero-banner-image, .hero-carousel:hover .hero-banner-placeholder-logo { transform: none !important; }
+  .hero-carousel-slide { transition: opacity .22s ease-in-out, visibility 0s linear .22s !important; transform: none !important; }
+  .hero-carousel-slide.is-entering, .hero-carousel-slide.is-active { transition-delay: 0s !important; }
+  .hero-banner-image { transition-duration: .01ms !important; }
+  .hero-carousel-control { transition-duration: .22s !important; }
+  .hero-carousel-control:hover:not(:disabled), .hero-carousel-control:active:not(:disabled) { transform: translateY(-50%) !important; }
+  .hero-carousel-dot, .hero-carousel-dot::before { transition-duration: .22s !important; }
+  .hero-carousel-dot[aria-current="true"]::before, .hero-carousel-dot:active:not(:disabled) { transform: none !important; }
+  .hero-carousel:hover .hero-carousel-slide.is-active .hero-banner-image { transform: none !important; }
 }
 
 button, .button, .product-add, .product-add span:last-child, .text-link, .whatsapp-contact-button, .cart-trigger, .icon-button, .drawer-close, .quantity-control button, .remove-item, .cart-label, .order-note-actions > a {

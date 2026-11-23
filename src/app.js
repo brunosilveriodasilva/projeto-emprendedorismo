@@ -4,11 +4,6 @@ const CONFIG = {
   checkoutKey: 'bem-adocicado-checkout-v1',
 };
 
-const HERO_BANNERS = [
-  { id: 'banner-01', image: 'assets/images/banners/banner-01.jpg', alt: 'Banner de destaque da Bem Adocicado', content: null },
-  { id: 'banner-02', image: 'assets/images/banners/banner-02.jpg', alt: 'Banner de destaque da Bem Adocicado', content: null },
-  { id: 'banner-03', image: 'assets/images/banners/banner-03.jpg', alt: 'Banner de destaque da Bem Adocicado', content: null },
-];
 const HERO_AUTOPLAY_DELAY = 5000;
 
 // Fotos ilustrativas provisórias. Substitua as URLs quando as imagens oficiais estiverem disponíveis.
@@ -25,6 +20,12 @@ const CATALOG_IMAGES = {
   pausa: 'https://images.unsplash.com/photo-1675819954237-ceb8dead5f8f?auto=format&fit=crop&w=900&q=80',
   degustacao: 'https://images.unsplash.com/photo-1766773443106-2ae97c680f87?auto=format&fit=crop&w=900&q=80',
 };
+
+const HERO_BANNERS = [
+  { id: 'banner-01', image: 'https://images.unsplash.com/photo-1632335479115-1e3db2cdd262?auto=format&fit=crop&w=1600&q=82', alt: 'Lago alpino com montanhas refletidas na água', content: null },
+  { id: 'banner-02', image: 'https://images.unsplash.com/photo-1587032044508-f13ba5cd6a0a?auto=format&fit=crop&w=1600&q=82', alt: 'Montanhas verdes junto ao mar', content: null },
+  { id: 'banner-03', image: 'https://images.unsplash.com/photo-1645435032489-49a93987579b?auto=format&fit=crop&w=1600&q=82', alt: 'Sol entre as árvores em um vale montanhoso', content: null },
+];
 
 const CATEGORIES = [
   {
@@ -180,24 +181,18 @@ function scheduleHeroAutoplay() {
   }, HERO_AUTOPLAY_DELAY);
 }
 
-async function loadHeroBannerImage(banner, slide, placeholder) {
-  try {
-    const response = await fetch(banner.image, { method: 'HEAD' });
-    if (!response.ok) return;
-    const image = new Image();
-    image.className = 'hero-banner-image';
-    image.alt = banner.alt;
-    image.draggable = false;
-    image.decoding = 'async';
-    image.onload = () => {
-      slide.insertBefore(image, placeholder);
-      placeholder.hidden = true;
-    };
-    image.onerror = () => image.remove();
-    image.src = banner.image;
-  } catch {
-    // O banner oficial pode não existir ainda; mantém a apresentação com a logo local.
-  }
+function loadHeroBannerImage(banner, slide, placeholder) {
+  const image = new Image();
+  image.className = 'hero-banner-image';
+  image.alt = banner.alt;
+  image.draggable = false;
+  image.decoding = 'async';
+  image.onload = () => {
+    slide.insertBefore(image, placeholder);
+    placeholder.hidden = true;
+  };
+  image.onerror = () => image.remove();
+  image.src = banner.image;
 }
 
 function initializeHeroCarousel() {
@@ -218,10 +213,6 @@ function initializeHeroCarousel() {
 
     const placeholder = makeElement('div', 'hero-banner-placeholder');
     placeholder.setAttribute('aria-hidden', 'true');
-    const placeholderLogo = makeElement('img', 'hero-banner-placeholder-logo');
-    placeholderLogo.src = 'assets/images/branding/main_logo.png';
-    placeholderLogo.alt = '';
-    placeholder.append(placeholderLogo);
     slide.append(placeholder);
     slidesRoot.append(slide);
     heroSlides.push(slide);
