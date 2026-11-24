@@ -48,13 +48,13 @@ const CATEGORIES = [
   },
   {
     id: 'combos', title: 'Combos promocionais', index: '04', products: [
-      { id: 'combo-namorados-romantico', name: 'Combo Namorados', description: '2 Brownies Tradicionais + 2 Brigadeiros', priceCents: 1200, originalPriceCents: 1400, image: CATALOG_IMAGES.namorados },
+      { id: 'combo-namorados-romantico', name: 'Combo Namorados', description: '2 Brownies Tradicionais + 2 Brigadeiros', priceCents: 800, originalPriceCents: 1400, image: CATALOG_IMAGES.namorados },
       { id: 'combo-trio-de-amigos', name: 'Combo Trio', description: '3 Brownies Tradicionais + 3 Brigadeiros', priceCents: 1800, originalPriceCents: 2100, image: CATALOG_IMAGES.trio },
-      { id: 'combo-duo-dupla', name: 'Combo Duo', description: '1 Brownie Tradicional + 1 Brigadeiro', priceCents: 600, originalPriceCents: 700, image: CATALOG_IMAGES.duo },
+      { id: 'combo-duo-dupla', name: 'Combo Duo', description: '1 Brownie Tradicional + 1 Brigadeiro', priceCents: 620, originalPriceCents: 700, image: CATALOG_IMAGES.duo },
       { id: 'combo-loucos-por-chocolate', name: 'Combo Loucos por Chocolate', description: '1 Brownie Tradicional + 2 Brigadeiros + 1 Ouro Branco', priceCents: 1100, originalPriceCents: 1250, image: CATALOG_IMAGES.loucos },
       { id: 'combo-galera-grupo', name: 'Combo Grupo', description: '4 Brigadeiros + 2 Ouro Branco', priceCents: 1300, originalPriceCents: 1500, image: CATALOG_IMAGES.galera },
       { id: 'combo-pequena-pausa-lanchinho', name: 'Combo Pequena Pausa', description: '1 Brigadeiro + 1 Ouro Branco', priceCents: 500, originalPriceCents: 550, image: CATALOG_IMAGES.pausa },
-      { id: 'combo-degustacao-total', name: 'Combo Degustação Total', description: '1 Brownie Tradicional + 1 Brigadeiro Recheado + 1 Brigadeiro de Leite Ninho + 1 Ouro Branco', priceCents: 1100, originalPriceCents: 1250, image: CATALOG_IMAGES.degustacao },
+      { id: 'combo-degustacao-total', name: 'Combo Degustação Total', description: '1 Brownie Tradicional + 1 Brigadeiro Recheado + 1 Brigadeiro de Leite Ninho + 1 Ouro Branco', priceCents: 1600, originalPriceCents: 1950, image: CATALOG_IMAGES.degustacao },
     ],
   },
 ];
