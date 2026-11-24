@@ -13,7 +13,7 @@ const CATALOG_IMAGES = {
   brigadeiro: 'assets/images/products/brigadeiro_chocolate.png',
   leiteNinho: 'assets/images/products/brigadeiro_branco.jpg',
   ouroBranco: 'assets/images/products/bombom_ouro_branco.jpg',
-  namorados: 'assets/images/products/supremo_chocolate.jpg',
+  namorados: 'assets/images/products/combo_namorados.jpg',
   trio: 'assets/images/products/entre_amigos.jpg',
   duo: 'assets/images/products/combo_duo.jpg',
   loucos: 'assets/images/products/supremo_chocolate.jpg',
