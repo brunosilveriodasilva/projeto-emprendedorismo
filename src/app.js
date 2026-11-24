@@ -23,9 +23,9 @@ const CATALOG_IMAGES = {
 };
 
 const HERO_BANNERS = [
-  { id: 'banner-01', image: 'https://images.unsplash.com/photo-1632335479115-1e3db2cdd262?auto=format&fit=crop&w=1600&q=82', alt: 'Lago alpino com montanhas refletidas na água', content: null },
-  { id: 'banner-02', image: 'https://images.unsplash.com/photo-1587032044508-f13ba5cd6a0a?auto=format&fit=crop&w=1600&q=82', alt: 'Montanhas verdes junto ao mar', content: null },
-  { id: 'banner-03', image: 'https://images.unsplash.com/photo-1645435032489-49a93987579b?auto=format&fit=crop&w=1600&q=82', alt: 'Sol entre as árvores em um vale montanhoso', content: null },
+  { id: 'banner-01', image: 'assets/images/banners/banner1_desktop.jpg', mobileImage: 'assets/images/banners/banner1_mobile.jpg', alt: 'Banner da Bem Adocicado: na compra de um combo de doces, ganhe uma foto', content: null },
+  { id: 'banner-02', image: 'assets/images/banners/banner2_desktop.jpg', mobileImage: 'assets/images/banners/banner2_mobile.jpg', alt: 'Banner da Bem Adocicado com brownies e aviso de pagamento via Pix', content: null },
+  { id: 'banner-03', image: 'assets/images/banners/banner3_desktop.jpg', mobileImage: 'assets/images/banners/banner3_mobile.jpg', alt: 'Banner da Black Friday Bem Adocicado com ofertas de brigadeiro e brownie', content: null },
 ];
 
 const CATEGORIES = [
@@ -229,16 +229,22 @@ function scheduleHeroAutoplay(resetCountdown = false) {
 }
 
 function loadHeroBannerImage(banner, slide, placeholder) {
+  const picture = document.createElement('picture');
+  picture.className = 'hero-banner-picture';
+  const mobileSource = document.createElement('source');
+  mobileSource.media = '(max-width: 760px)';
+  mobileSource.srcset = banner.mobileImage;
   const image = new Image();
   image.className = 'hero-banner-image';
   image.alt = banner.alt;
   image.draggable = false;
   image.decoding = 'async';
   image.onload = () => {
-    slide.insertBefore(image, placeholder);
+    slide.insertBefore(picture, placeholder);
     placeholder.hidden = true;
   };
-  image.onerror = () => image.remove();
+  image.onerror = () => picture.remove();
+  picture.append(mobileSource, image);
   image.src = banner.image;
 }
 
