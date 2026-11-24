@@ -8,7 +8,8 @@ const HERO_AUTOPLAY_DELAY = 10000;
 
 // Fotos ilustrativas provisórias. Substitua as URLs quando as imagens oficiais estiverem disponíveis.
 const CATALOG_IMAGES = {
-  brownie: 'assets/images/products/brownie_chocolate.png',
+  brownie: 'assets/images/products/brownie_chocolate.jpg',
+  brownieRecheado: 'assets/images/products/brownie_chocolate_recheado.jpg',
   brigadeiro: 'assets/images/products/brigadeiro_chocolate.png',
   leiteNinho: 'assets/images/products/brigadeiro_branco.jpg',
   ouroBranco: 'assets/images/products/bombom_ouro_branco.jpg',
@@ -30,29 +31,30 @@ const HERO_BANNERS = [
 const CATEGORIES = [
   {
     id: 'brownies', title: 'Brownies', index: '01', products: [
-      { id: 'brownie-tradicional', name: 'Brownie Tradicional', priceCents: 500, image: CATALOG_IMAGES.brownie },
+      { id: 'brownie-tradicional', name: 'Brownie Tradicional', description: '1 Brownie Tradicional', priceCents: 500, image: CATALOG_IMAGES.brownie },
+      { id: 'brownie-recheado', name: 'Brownie Recheado', description: '1 Brownie Recheado', priceCents: 700, image: CATALOG_IMAGES.brownieRecheado },
     ],
   },
   {
     id: 'docinhos', title: 'Docinhos', index: '02', products: [
-      { id: 'brigadeiro-tradicional', name: 'Brigadeiro Tradicional (Un.)', priceCents: 200, image: CATALOG_IMAGES.brigadeiro },
-      { id: 'brigadeiro-leite-ninho', name: 'Brigadeiro de Leite Ninho (Un.)', priceCents: 200, image: CATALOG_IMAGES.leiteNinho },
+      { id: 'brigadeiro-tradicional', name: 'Brigadeiro Tradicional', description: '1 Brigadeiro Tradicional', priceCents: 200, image: CATALOG_IMAGES.brigadeiro },
+      { id: 'brigadeiro-leite-ninho', name: 'Brigadeiro de Leite Ninho', description: '1 Brigadeiro de Leite Ninho', priceCents: 200, image: CATALOG_IMAGES.leiteNinho },
     ],
   },
   {
     id: 'bombons', title: 'Bombons', index: '03', products: [
-      { id: 'bombom-ouro-branco', name: 'Bombom Ouro Branco (Un.)', priceCents: 350, image: CATALOG_IMAGES.ouroBranco },
+      { id: 'bombom-ouro-branco', name: 'Bombom Ouro Branco', description: '1 Bombom Ouro Branco', priceCents: 350, image: CATALOG_IMAGES.ouroBranco },
     ],
   },
   {
     id: 'combos', title: 'Combos promocionais', index: '04', products: [
-      { id: 'combo-namorados-romantico', name: 'Combo 2 Brownies + 2 Brigadeiros', priceCents: 1200, originalPriceCents: 1400, image: CATALOG_IMAGES.namorados },
-      { id: 'combo-trio-de-amigos', name: 'Combo 3 Brownies + 3 Brigadeiros', priceCents: 1800, originalPriceCents: 2100, image: CATALOG_IMAGES.trio },
-      { id: 'combo-duo-dupla', name: 'Combo 1 Brownie + 1 Brigadeiro', priceCents: 600, originalPriceCents: 700, image: CATALOG_IMAGES.duo },
-      { id: 'combo-loucos-por-chocolate', name: 'Combo 1 Brownie + 2 Brigadeiros + 1 Bombom Ouro Branco', priceCents: 1100, originalPriceCents: 1250, image: CATALOG_IMAGES.loucos },
-      { id: 'combo-galera-grupo', name: 'Combo 4 Brigadeiros + 2 Bombons Ouro Branco', priceCents: 1300, originalPriceCents: 1500, image: CATALOG_IMAGES.galera },
-      { id: 'combo-pequena-pausa-lanchinho', name: 'Combo 1 Brigadeiro + 1 Bombom Ouro Branco', priceCents: 500, originalPriceCents: 550, image: CATALOG_IMAGES.pausa },
-      { id: 'combo-degustacao-total', name: 'Combo 1 Brownie + 1 Brigadeiro Tradicional + 1 Brigadeiro de Leite Ninho + 1 Bombom Ouro Branco', priceCents: 1100, originalPriceCents: 1250, image: CATALOG_IMAGES.degustacao },
+      { id: 'combo-namorados-romantico', name: 'Combo Namorados', description: '2 Brownies Tradicionais + 2 Brigadeiros', priceCents: 1200, originalPriceCents: 1400, image: CATALOG_IMAGES.namorados },
+      { id: 'combo-trio-de-amigos', name: 'Combo Trio', description: '3 Brownies Tradicionais + 3 Brigadeiros', priceCents: 1800, originalPriceCents: 2100, image: CATALOG_IMAGES.trio },
+      { id: 'combo-duo-dupla', name: 'Combo Duo', description: '1 Brownie Tradicional + 1 Brigadeiro', priceCents: 600, originalPriceCents: 700, image: CATALOG_IMAGES.duo },
+      { id: 'combo-loucos-por-chocolate', name: 'Combo Loucos por Chocolate', description: '1 Brownie Tradicional + 2 Brigadeiros + 1 Ouro Branco', priceCents: 1100, originalPriceCents: 1250, image: CATALOG_IMAGES.loucos },
+      { id: 'combo-galera-grupo', name: 'Combo Grupo', description: '4 Brigadeiros + 2 Ouro Branco', priceCents: 1300, originalPriceCents: 1500, image: CATALOG_IMAGES.galera },
+      { id: 'combo-pequena-pausa-lanchinho', name: 'Combo Pequena Pausa', description: '1 Brigadeiro + 1 Ouro Branco', priceCents: 500, originalPriceCents: 550, image: CATALOG_IMAGES.pausa },
+      { id: 'combo-degustacao-total', name: 'Combo Degustação Total', description: '1 Brownie Tradicional + 1 Brigadeiro Recheado + 1 Brigadeiro de Leite Ninho + 1 Ouro Branco', priceCents: 1100, originalPriceCents: 1250, image: CATALOG_IMAGES.degustacao },
     ],
   },
 ];
@@ -395,12 +397,13 @@ function makeProductCard(product) {
   } else {
     meta.append(makeElement('span', 'product-price', formatPrice(product.priceCents)));
   }
+  const description = makeElement('p', 'product-description', product.description);
   const addButton = makeElement('button', 'product-add');
   addButton.type = 'button';
   addButton.setAttribute('aria-label', `Adicionar ${product.name}, ${formatPrice(product.priceCents)}, ao carrinho`);
   addButton.append(makeElement('span', '', 'Adicionar ao carrinho'), makeElement('span', '', '+'));
   addButton.addEventListener('click', () => addProduct(product.id));
-  info.append(meta, addButton);
+  info.append(meta, description, addButton);
   if (image) article.append(image);
   article.append(info);
   return article;
@@ -440,7 +443,11 @@ function makeCartLine(product, quantity) {
   image.decoding = 'async';
   imageFrame.append(image);
   const main = makeElement('div', 'cart-line-main');
-  main.append(makeElement('h3', '', product.name), makeElement('p', '', `${formatPrice(product.priceCents)} cada`));
+  main.append(
+    makeElement('h3', '', product.name),
+    makeElement('p', 'cart-line-description', product.description),
+    makeElement('p', 'cart-line-unit-price', `${formatPrice(product.priceCents)} cada`),
+  );
   const price = makeElement('span', 'cart-line-price', formatPrice(product.priceCents * quantity));
   price.setAttribute('aria-label', `Subtotal: ${formatPrice(product.priceCents * quantity)}`);
   const details = makeElement('div', 'cart-line-details');
@@ -718,11 +725,9 @@ function buildOrderMessage() {
   ];
   cart.forEach((line) => {
     const product = productById.get(line.id);
-    lines.push(
-      `${line.quantity}x ${product.name}`,
-      `Valor unitário: ${formatPrice(product.priceCents)}`,
-      '',
-    );
+    lines.push(`${line.quantity}x ${product.name}`);
+    if (product.description) lines.push(`${product.categoryId === 'combos' ? 'Composição' : 'Descrição'}: ${product.description}`);
+    lines.push(`Valor unitário: ${formatPrice(product.priceCents)}`, '');
   });
   lines.push(
     '*DETALHES DO PEDIDO*',
