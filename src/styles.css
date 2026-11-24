@@ -140,9 +140,11 @@ h1, h2, h3, p { margin-top: 0; }
 .discount-badge { padding: 3px 5px; border-radius: 999px; background: #f8e9ec; color: var(--red-dark); font-size: 8px; font-weight: 700; line-height: 1; white-space: nowrap; }
 .product-add { width: 100%; min-height: 42px; margin-top: auto; display: flex; align-items: center; justify-content: space-between; padding: 7px 11px; border: 1px solid #d9ccc6; background: transparent; color: var(--ink); cursor: pointer; transition: transform .18s ease, border-color .18s ease, background-color .18s ease, color .18s ease, box-shadow .18s ease; }
 .product-add span:last-child { display: inline-flex; flex: 0 0 22px; align-items: center; justify-content: center; width: 22px; height: 22px; padding: 0; color: var(--red); }
-.product-add:hover { border-color: var(--red); background: var(--red); color: #fff; box-shadow: 0 5px 12px rgba(200,16,46,.15); }
-.product-add:hover span:last-child { color: #fff; }
-.product-add:active { transform: translateY(0) scale(.97); }
+.product-add:hover:not(:disabled) { border-color: var(--red); background: var(--red); color: #fff; box-shadow: 0 5px 12px rgba(200,16,46,.15); }
+.product-add:hover:not(:disabled) span:last-child { color: #fff; }
+.product-add:active:not(:disabled) { transform: translateY(0) scale(.97); }
+.product-add--unavailable { justify-content: center; border-color: var(--line); background: #f7f2ef; color: var(--muted); cursor: not-allowed; box-shadow: none; }
+.product-add--unavailable span:last-child { flex-basis: auto; width: auto; height: auto; }
 
 .order-note { position: relative; min-height: 250px; padding: 55px max(32px, calc((100vw - 1120px) / 2)); display: grid; grid-template-columns: minmax(280px, 1fr) minmax(280px, clamp(280px, 38vw, 440px)); align-items: center; gap: 30px; overflow: hidden; background: var(--beige); }
 .order-note-copy { position: relative; z-index: 1; }
