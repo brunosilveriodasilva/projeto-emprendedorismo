@@ -8,17 +8,17 @@ const HERO_AUTOPLAY_DELAY = 10000;
 
 // Fotos ilustrativas provisórias. Substitua as URLs quando as imagens oficiais estiverem disponíveis.
 const CATALOG_IMAGES = {
-  brownie: 'https://images.unsplash.com/photo-1636743715220-d8f8dd900b87?auto=format&fit=crop&w=900&q=80',
-  brigadeiro: 'https://images.unsplash.com/photo-1765946024017-3995b2aa99eb?auto=format&fit=crop&w=900&q=80',
-  leiteNinho: 'https://www.receitasnestle.com.br/sites/default/files/styles/recipe_detail_desktop_new/public/srh_recipes/03597fd51e6f6d3d524b31a201cc5b32.png?itok=pq8OtpNh',
-  ouroBranco: 'https://images.tcdn.com.br/img/img_prod/1225570/ouro_branco_20g_unidade_1679_2_342c74d706218310c2d11f60ded4a126.png',
-  namorados: 'https://images.unsplash.com/photo-1674068640712-165cee4b180f?auto=format&fit=crop&w=900&q=80',
-  trio: 'https://images.unsplash.com/photo-1757450317518-9d385619f5ee?auto=format&fit=crop&w=900&q=80',
-  duo: 'https://images.unsplash.com/photo-1769019401098-077f22efd134?auto=format&fit=crop&w=900&q=80',
-  loucos: 'https://images.unsplash.com/photo-1777647362214-ae62d7d4a707?auto=format&fit=crop&w=900&q=80',
-  galera: 'https://images.unsplash.com/photo-1700649405390-574054e0d190?auto=format&fit=crop&w=900&q=80',
-  pausa: 'https://images.unsplash.com/photo-1675819954237-ceb8dead5f8f?auto=format&fit=crop&w=900&q=80',
-  degustacao: 'https://images.unsplash.com/photo-1766773443106-2ae97c680f87?auto=format&fit=crop&w=900&q=80',
+  brownie: 'assets/images/products/brownie_chocolate.png',
+  brigadeiro: 'assets/images/products/brigadeiro_chocolate.png',
+  leiteNinho: 'assets/images/products/brigadeiro_branco.jpg',
+  ouroBranco: 'assets/images/products/bombom_ouro_branco.jpg',
+  namorados: 'assets/images/products/supremo_chocolate.jpg',
+  trio: 'assets/images/products/entre_amigos.jpg',
+  duo: 'assets/images/products/combo_duo.jpg',
+  loucos: 'assets/images/products/supremo_chocolate.jpg',
+  galera: 'assets/images/products/galera.jpg',
+  pausa: 'assets/images/products/pequena_pausa.jpg',
+  degustacao: 'assets/images/products/degustacao_vip.jpg',
 };
 
 const HERO_BANNERS = [
